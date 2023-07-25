@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Gpt3_5Request = () => {
+  const [inputText, setInputText] = useState('');
+  const [responseText, setResponseText] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const apiKey = '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';
+
+  const handleInputChange = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    if (isButtonDisabled) return; // Impede mais de uma solicitação dentro de 100 segundos
+
+    setIsButtonDisabled(true);
+    fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        prompt: inputText,
+        max_tokens: 100,
+      }),
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Erro ao acessar a API da OpenAI.');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setResponseText(data.choices[0].text);
+      setTimeout(() => setIsButtonDisabled(false), 100000); // Habilita o botão novamente após 100 segundos (100000 milissegundos)
+    })
+    .catch((error) => {
+      console.error('Erro ao acessar a API da OpenAI:', error);
+      setResponseText('Ocorreu um erro ao processar a solicitação.');
+      setIsButtonDisabled(false); // Habilita o botão novamente em caso de erro
+    });
+  };
 
   return (
-    <>
+    <div>
+      <h1>Exemplo de Requisição à OpenAI GPT-3.5 Turbo</h1>
+      <textarea
+        value={inputText}
+        onChange={handleInputChange}
+        placeholder="Digite o texto para completar..."
+        rows={5}
+        cols={50}
+      />
+      <br />
+      <button onClick={handleButtonClick} disabled={isButtonDisabled}>
+        Completar Texto
+      </button>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>Resposta:</h2>
+        <p>{responseText}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default Gpt3_5Request;
