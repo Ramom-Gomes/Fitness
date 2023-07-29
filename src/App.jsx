@@ -45,22 +45,7 @@ const Gpt3_5Request = () => {
 
   return (
     <div>
-      <h1>Exemplo de Requisição à OpenAI GPT-3.5 Turbo</h1>
-      <textarea
-        value={inputText}
-        onChange={handleInputChange}
-        placeholder="Digite o texto para completar..."
-        rows={5}
-        cols={50}
-      />
-      <br />
-      <button onClick={handleButtonClick} disabled={isButtonDisabled}>
-        Completar Texto
-      </button>
-      <div>
-        <h2>Resposta:</h2>
-        <p>{responseText}</p>
-      </div>
+      <h1>sim</h1>
     </div>
   );
 }
