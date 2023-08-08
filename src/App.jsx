@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Gpt3_5Request = () => {
+const ProjetoAcademia = () => {
   
 
   return (
@@ -10,4 +10,4 @@ const Gpt3_5Request = () => {
   );
 }
 
-export default Gpt3_5Request;
+export default ProjetoAcademia;
