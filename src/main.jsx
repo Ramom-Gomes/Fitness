@@ -1,11 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import rotas from './routes/rotas.jsx';
-import { RouterProvider } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Importe createRoot de "react-dom/client"
+import App from './App.jsx';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+
+const root = ReactDOM.createRoot(rootElement);
+
+root.render(
   <React.StrictMode>
-    <RouterProvider router={rotas}/>
-  </React.StrictMode>,
-)
+    <Router>
+      <App />
+    </Router>
+  </React.StrictMode>
+);

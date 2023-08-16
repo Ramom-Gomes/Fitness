@@ -1,16 +1,13 @@
-import { createBrowserRouter} from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import LoginPage from "../components/login";
 import RegisterPage from "../components/registro";
 
-const rotas = createBrowserRouter([
-    {
-        path: "/",
-        element: <LoginPage/>,
-    },
-    {
-        path: "registro",
-        element: <RegisterPage/>,
-    },
-]);
+const Rotas = ({ registerUser }) => (
+  <Routes>
+    <Route path="/" element={<LoginPage />} />
+    <Route path="/registro" element={<RegisterPage registerUser={registerUser} />} />
+  </Routes>
+);
 
-export default rotas;
+export default Rotas;
