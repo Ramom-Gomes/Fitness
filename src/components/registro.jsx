@@ -16,7 +16,7 @@ function RegisterPage({ registerUser, users }) {
 
     if (existingUser) {
       // Trate o caso em que o email já existe
-      alert("Este email já está sendo usado porra.");
+      alert("Este email já está sendo usado porra!");
       return;
     }
 
