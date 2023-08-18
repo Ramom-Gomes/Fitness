@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Rotas from './routes/rotas';
+
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -20,9 +20,9 @@ function App() {
 
   return (
     <div>
-      <Rotas registerUser={registerUser} />
+      <Rotas users={users} registerUser={registerUser} />
     </div>
   );
 }
 
-export default App;
+export default App; 

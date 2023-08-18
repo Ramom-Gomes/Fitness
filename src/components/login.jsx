@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Importe o componente Link
+import { Link, useNavigate } from "react-router-dom";
 
 
-function LoginPage({ registerUser }) {
+function LoginPage({ users }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Implemente a lógica de autenticação aqui
+    // Verifica se o usuário existe no localStorage
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      // Navegar para a página de boas-vindas com o nome do usuário
+      navigate(`/bemvindo/${user.nome}`);
+    } else {
+      alert("cria seu usuario porra!")
+      // Lógica para tratamento de erro ou feedback de login inválido
+    }
   };
 
   return (
@@ -23,4 +35,4 @@ function LoginPage({ registerUser }) {
   );
 }
 
-export default LoginPage;
+export default LoginPage; 

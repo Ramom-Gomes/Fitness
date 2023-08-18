@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function RegisterPage({ registerUser }) {
+function RegisterPage({ registerUser, users }) {
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
@@ -11,6 +11,15 @@ function RegisterPage({ registerUser }) {
 
   const handleRegister = () => {
     // Implemente a lógica de registro de usuário aqui
+
+    const existingUser = users.find(user => user.email === newUser.email);
+
+    if (existingUser) {
+      // Trate o caso em que o email já existe
+      alert("Este email já está sendo usado porra.");
+      return;
+    }
+
     registerUser(newUser); // Adiciona o novo usuário ao estado
     setNewUser({
       email: "",
