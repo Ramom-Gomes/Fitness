@@ -36,3 +36,19 @@ function LoginPage({ users }) {
 }
 
 export default LoginPage; 
+
+/*
+const handleLogin = () => {
+  const user = users.find(
+    (user) => user.email === email && user.password === password
+  );
+
+  if (user) {
+    localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
+    navigate(`/bemvindo`); // Navegar para a página de boas-vindas
+  } else {
+    alert("Crie seu usuário, por favor!");
+    // Lógica para tratamento de erro ou feedback de login inválido
+  }
+};
+*/
