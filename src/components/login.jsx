@@ -8,16 +8,15 @@ function LoginPage({ users }) {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Verifica se o usuário existe no localStorage
     const user = users.find(
       (user) => user.email === email && user.password === password
     );
-
+  
     if (user) {
-      // Navegar para a página de boas-vindas com o nome do usuário
-      navigate(`/bemvindo/${user.nome}`);
+      localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
+      navigate(`/bemvindo`); // Navegar para a página de boas-vindas
     } else {
-      alert("cria seu usuario porra!")
+      alert("Crie seu usuário, por favor!");
       // Lógica para tratamento de erro ou feedback de login inválido
     }
   };
@@ -36,19 +35,3 @@ function LoginPage({ users }) {
 }
 
 export default LoginPage; 
-
-/*
-const handleLogin = () => {
-  const user = users.find(
-    (user) => user.email === email && user.password === password
-  );
-
-  if (user) {
-    localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
-    navigate(`/bemvindo`); // Navegar para a página de boas-vindas
-  } else {
-    alert("Crie seu usuário, por favor!");
-    // Lógica para tratamento de erro ou feedback de login inválido
-  }
-};
-*/

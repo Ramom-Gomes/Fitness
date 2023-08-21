@@ -8,7 +8,7 @@ const Rotas = ({ users , registerUser }) => (
   <Routes>
     <Route path="/" element={<LoginPage users={users} />} />
     <Route path="/registro" element={<RegisterPage users={users} registerUser={registerUser} />} />
-    <Route path='/bemvindo/:name' element={<BemVindo/>}/>
+    <Route path='/bemvindo' element={<BemVindo/>}/>
   </Routes>
 );
 
