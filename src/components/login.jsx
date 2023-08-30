@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 
 function LoginPage({ users }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      setEmail(currentUser.email);
+      setPassword(currentUser.password);
+    }
+  }, []);
 
   const handleLogin = () => {
     const user = users.find(
@@ -34,4 +41,4 @@ function LoginPage({ users }) {
   );
 }
 
-export default LoginPage; 
+export default LoginPage;

@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function BemVindo() {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     nome: "",
     idade: "",
@@ -18,12 +21,17 @@ function BemVindo() {
     }
   }, []);
 
+  const handleLogout = () => {
+    // Redirecionar para a página de login
+    navigate('/');
+  };
+
   return (
     <div>
       <h2>Olá, {userData.nome}!</h2>
       <p>Idade: {userData.idade}</p>
       <p>Peso: {userData.peso} kg</p>
-      {/* Conteúdo adicional da página de boas-vindas */}
+      <button onClick={handleLogout}>Sair</button>
     </div>
   );
 }
