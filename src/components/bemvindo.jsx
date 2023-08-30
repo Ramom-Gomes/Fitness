@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function BemVindo() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function BemVindo() {
       <h2>Olá, {userData.nome}!</h2>
       <p>Idade: {userData.idade}</p>
       <p>Peso: {userData.peso} kg</p>
+      <Link to="/atualizar-usuario">Atualizar Informações</Link>
       <button onClick={handleLogout}>Sair</button>
     </div>
   );
