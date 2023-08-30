@@ -40,6 +40,7 @@ function LoginPage({ users }) {
       <p>
         Ainda não tem um login? <Link to="/registro">Criar meu login</Link>
       </p>
+      <p>Esqueci minha senha! <Link to="/trocar-senha">Trocar Senha</Link></p>
     </div>
   );
 }
