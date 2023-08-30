@@ -3,26 +3,39 @@ import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
 
 function TrocarSenha({ users }) {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [keyword, setKeyword] = useState('');
-  const [error, setError] = useState('');
-
-  const navigate = useNavigate(); // Usar o hook useNavigate para navegação
+  const [errors, setErrors] = useState({});
 
   const handlePasswordChange = () => {
-    if (!email || !newPassword || !confirmPassword || !keyword) {
-      setError('Preencha todos os campos.');
-    } else {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = 'Digite o e-mail.';
+    }
+    if (!newPassword) {
+      newErrors.newPassword = 'Digite a nova senha.';
+    }
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'Confirme a nova senha.';
+    }
+    if (!keyword) {
+      newErrors.keyword = 'Digite a palavra-chave.';
+    }
+
+    if (Object.keys(newErrors).length === 0) {
       const userIndex = users.findIndex(user => user.email === email);
 
       if (userIndex === -1) {
-        setError('Usuário não encontrado.');
+        newErrors.email = 'Usuário não encontrado.';
       } else if (users[userIndex].palavraChave !== keyword) {
-        setError('Palavra chave incorreta.');
+        newErrors.keyword = 'Palavra chave incorreta.';
       } else if (newPassword !== confirmPassword) {
-        setError('As senhas não coincidem.');
+        newErrors.confirmPassword = 'As senhas não coincidem.';
       } else {
         // Atualizar a senha do usuário
         users[userIndex].password = newPassword;
@@ -35,7 +48,7 @@ function TrocarSenha({ users }) {
         setNewPassword('');
         setConfirmPassword('');
         setKeyword('');
-        setError('');
+        setErrors({});
 
         // Fazer login do usuário automaticamente
         localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
@@ -44,6 +57,8 @@ function TrocarSenha({ users }) {
         navigate('/bemvindo');
       }
     }
+
+    setErrors(newErrors);
   };
 
   return (
@@ -55,26 +70,33 @@ function TrocarSenha({ users }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+      
       <input
         type="password"
         placeholder="Nova Senha"
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
       />
+      {errors.newPassword && <p style={{ color: 'red' }}>{errors.newPassword}</p>}
+      
       <input
         type="password"
         placeholder="Confirmar Nova Senha"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
+      {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword}</p>}
+      
       <input
         type="text"
         placeholder="Palavra-chave"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
+      {errors.keyword && <p style={{ color: 'red' }}>{errors.keyword}</p>}
+      
       <button onClick={handlePasswordChange}>Trocar Senha</button>
-      {error && <p>{error}</p>}
     </div>
   );
 }
