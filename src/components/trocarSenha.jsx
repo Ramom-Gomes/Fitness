@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import { useNavigate } from 'react-router-dom';
 
 function TrocarSenha({ users }) {
   const [email, setEmail] = useState('');
@@ -8,30 +9,40 @@ function TrocarSenha({ users }) {
   const [keyword, setKeyword] = useState('');
   const [error, setError] = useState('');
 
+  const navigate = useNavigate(); // Usar o hook useNavigate para navegação
+
   const handlePasswordChange = () => {
-    const user = users.find(user => user.email === email);
-
-    if (!user) {
-      setError('Usuário não encontrado.');
-    } else if (user.palavraChave !== keyword) {
-      setError('Palavra chave incorreta.');
-    } else if (!validator.isLength(newPassword, { min: 6 })) {
-      setError('A senha deve ter pelo menos 6 caracteres.');
-    } else if (newPassword !== confirmPassword) {
-      setError('As senhas não coincidem.');
+    if (!email || !newPassword || !confirmPassword || !keyword) {
+      setError('Preencha todos os campos.');
     } else {
-      // Atualizar a senha do usuário
-      user.password = newPassword;
+      const userIndex = users.findIndex(user => user.email === email);
 
-      // Atualizar os dados no armazenamento local
-      localStorage.setItem('users', JSON.stringify(users));
+      if (userIndex === -1) {
+        setError('Usuário não encontrado.');
+      } else if (users[userIndex].palavraChave !== keyword) {
+        setError('Palavra chave incorreta.');
+      } else if (newPassword !== confirmPassword) {
+        setError('As senhas não coincidem.');
+      } else {
+        // Atualizar a senha do usuário
+        users[userIndex].password = newPassword;
 
-      // Limpar campos e erros
-      setEmail('');
-      setNewPassword('');
-      setConfirmPassword('');
-      setKeyword('');
-      setError('Senha alterada com sucesso.');
+        // Atualizar os dados no armazenamento local
+        localStorage.setItem('users', JSON.stringify(users));
+
+        // Limpar campos e erros
+        setEmail('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setKeyword('');
+        setError('');
+
+        // Fazer login do usuário automaticamente
+        localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
+
+        // Redirecionar para a página de boas-vindas
+        navigate('/bemvindo');
+      }
     }
   };
 
