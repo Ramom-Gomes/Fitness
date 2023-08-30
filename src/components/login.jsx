@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 function LoginPage({ users }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,15 +17,16 @@ function LoginPage({ users }) {
 
   const handleLogin = () => {
     const user = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email
     );
   
-    if (user) {
+    if (!user) {
+      setError("Usuário não encontrado.");
+    } else if (user.password !== password) {
+      setError("Senha incorreta.");
+    } else {
       localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
       navigate(`/bemvindo`); // Navegar para a página de boas-vindas
-    } else {
-      alert("Crie seu usuário, por favor!");
-      // Lógica para tratamento de erro ou feedback de login inválido
     }
   };
 
@@ -34,6 +36,7 @@ function LoginPage({ users }) {
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button onClick={handleLogin}>Login</button>
+      {error && <p>{error}</p>}
       <p>
         Ainda não tem um login? <Link to="/registro">Criar meu login</Link>
       </p>
