@@ -8,13 +8,13 @@ function RegisterPage({ registerUser, users }) {
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
     nome: "",
     idade: "",
     peso: "",
     palavraChave: "",
   });
 
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleRegister = () => {
@@ -42,12 +42,12 @@ function RegisterPage({ registerUser, users }) {
       newErrors.peso = "O peso deve ser um número válido.";
     }
 
-    if (newUser.password !== newUser.confirmPassword) {
-      newErrors.confirmPassword = "As senhas não coincidem.";
-    }
-
     if (!newUser.palavraChave) {
       newErrors.palavraChave = "Digite uma palavra-chave.";
+    }
+
+    if (newUser.password !== confirmPassword) {
+      newErrors.confirmPassword = "As senhas não coincidem.";
     }
 
     if (Object.keys(newErrors).length === 0) {
@@ -66,12 +66,12 @@ function RegisterPage({ registerUser, users }) {
         setNewUser({
           email: "",
           password: "",
-          confirmPassword: "",
           nome: "",
           idade: "",
           peso: "",
           palavraChave: "",
         });
+        setConfirmPassword("");
 
         // Redireciona para a página de boas-vindas
         navigate('/bemvindo');
@@ -103,10 +103,8 @@ function RegisterPage({ registerUser, users }) {
       <input
         type="password"
         placeholder="Confirme a senha"
-        value={newUser.confirmPassword}
-        onChange={(e) =>
-          setNewUser({ ...newUser, confirmPassword: e.target.value })
-        }
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
       />
       {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 
@@ -138,9 +136,7 @@ function RegisterPage({ registerUser, users }) {
         type="text"
         placeholder="Palavra-chave"
         value={newUser.palavraChave}
-        onChange={(e) =>
-          setNewUser({ ...newUser, palavraChave: e.target.value })
-        }
+        onChange={(e) => setNewUser({ ...newUser, palavraChave: e.target.value })}
       />
       {errors.palavraChave && <p>{errors.palavraChave}</p>}
 
