@@ -12,6 +12,11 @@ function RegisterPage({ registerUser, users }) {
     idade: "",
     peso: "",
     palavraChave: "",
+    altura: "",
+    sexo: "",
+    objetivo: "",
+    nivelCondicionamento: "",
+    frequenciaTreino: "",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,8 +47,25 @@ function RegisterPage({ registerUser, users }) {
       newErrors.peso = "O peso deve ser um número válido.";
     }
 
-    if (!newUser.palavraChave) {
-      newErrors.palavraChave = "Digite uma palavra-chave.";
+    if (!validator.isFloat(newUser.altura, { locales: "pt-BR" })) {
+      newErrors.altura = "A altura deve ser um número válido.";
+    }
+
+    // Validar que sexo, objetivo, nível de condicionamento e frequência de treino são strings não vazias
+    if (typeof newUser.sexo !== "string" || newUser.sexo.trim() === "") {
+      newErrors.sexo = "Informe o sexo.";
+    }
+
+    if (typeof newUser.objetivo !== "string" || newUser.objetivo.trim() === "") {
+      newErrors.objetivo = "Informe o objetivo.";
+    }
+
+    if (typeof newUser.nivelCondicionamento !== "string" || newUser.nivelCondicionamento.trim() === "") {
+      newErrors.nivelCondicionamento = "Informe o nível de condicionamento.";
+    }
+
+    if (typeof newUser.frequenciaTreino !== "string" || newUser.frequenciaTreino.trim() === "") {
+      newErrors.frequenciaTreino = "Informe a frequência de treino.";
     }
 
     if (newUser.password !== confirmPassword) {
@@ -70,6 +92,11 @@ function RegisterPage({ registerUser, users }) {
           idade: "",
           peso: "",
           palavraChave: "",
+          altura: "",
+          sexo: "",
+          objetivo: "",
+          nivelCondicionamento: "",
+          frequenciaTreino: "",
         });
         setConfirmPassword("");
 
@@ -131,6 +158,46 @@ function RegisterPage({ registerUser, users }) {
         onChange={(e) => setNewUser({ ...newUser, peso: e.target.value })}
       />
       {errors.peso && <p>{errors.peso}</p>}
+
+      <input
+        type="text"
+        placeholder="Altura (ex: 1.70)"
+        value={newUser.altura}
+        onChange={(e) => setNewUser({ ...newUser, altura: e.target.value })}
+      />
+      {errors.altura && <p>{errors.altura}</p>}
+
+      <input
+        type="text"
+        placeholder="Sexo"
+        value={newUser.sexo}
+        onChange={(e) => setNewUser({ ...newUser, sexo: e.target.value })}
+      />
+      {errors.sexo && <p>{errors.sexo}</p>}
+
+      <input
+        type="text"
+        placeholder="Objetivo"
+        value={newUser.objetivo}
+        onChange={(e) => setNewUser({ ...newUser, objetivo: e.target.value })}
+      />
+      {errors.objetivo && <p>{errors.objetivo}</p>}
+
+      <input
+        type="text"
+        placeholder="Nível de Condicionamento"
+        value={newUser.nivelCondicionamento}
+        onChange={(e) => setNewUser({ ...newUser, nivelCondicionamento: e.target.value })}
+      />
+      {errors.nivelCondicionamento && <p>{errors.nivelCondicionamento}</p>}
+
+      <input
+        type="text"
+        placeholder="Frequência de Treino"
+        value={newUser.frequenciaTreino}
+        onChange={(e) => setNewUser({ ...newUser, frequenciaTreino: e.target.value })}
+      />
+      {errors.frequenciaTreino && <p>{errors.frequenciaTreino}</p>}
 
       <input
         type="text"

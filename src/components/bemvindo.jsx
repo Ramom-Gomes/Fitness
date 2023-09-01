@@ -9,6 +9,11 @@ function BemVindo() {
     nome: "",
     idade: "",
     peso: "",
+    altura: "",
+    sexo: "",
+    objetivo: "",
+    nivelCondicionamento: "",
+    frequenciaTreino: "",
   });
 
   useEffect(() => {
@@ -18,6 +23,11 @@ function BemVindo() {
         nome: currentUser.nome,
         idade: currentUser.idade,
         peso: currentUser.peso,
+        altura: currentUser.altura,
+        sexo: currentUser.sexo,
+        objetivo: currentUser.objetivo,
+        nivelCondicionamento: currentUser.nivelCondicionamento,
+        frequenciaTreino: currentUser.frequenciaTreino,
       });
     }
   }, []);
@@ -32,6 +42,11 @@ function BemVindo() {
       <h2>Olá, {userData.nome}!</h2>
       <p>Idade: {userData.idade}</p>
       <p>Peso: {userData.peso} kg</p>
+      <p>Altura: {userData.altura} m</p>
+      <p>Sexo: {userData.sexo}</p>
+      <p>Objetivo: {userData.objetivo}</p>
+      <p>Nível de Condicionamento: {userData.nivelCondicionamento}</p>
+      <p>Frequência de Treino: {userData.frequenciaTreino}</p>
       <Link to="/atualizar-usuario">Atualizar Informações</Link>
       <button onClick={handleLogout}>Sair</button>
     </div>
