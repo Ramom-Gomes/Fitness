@@ -52,7 +52,7 @@ function ExerciseList() {
         {exerciseList.map((exercise, index) => (
           <li key={index}>
             <h3>Nome: {exercise.name}</h3>
-            <p>ID: {exercise.id}</p>
+            <p>ID: {exercise.id}</p> 
             <p>Parte do Corpo: {exercise.bodyPart}</p>
             <p>Equipamento: {exercise.equipment}</p>
             <img
@@ -60,7 +60,7 @@ function ExerciseList() {
               alt={`Imagem do exercício ${exercise.name}`}
               style={{ maxWidth: '100%', height: 'auto' }}
             />
-            <p>Alvo: {exercise.target}</p>
+            <p>Alvo: {exercise.target}</p> 
           </li>
         ))}
       </ul>
