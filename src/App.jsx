@@ -21,6 +21,21 @@ function App() {
     setUsers((prevUsers) => [...prevUsers, newUser]);
   };
 
+  const addExerciseToUser = (exercise) => {
+    // Clone o objeto de usuário atual
+    const updatedUser = { ...currentUser };
+  
+    // Adicione o exercício à lista de exercícios do usuário
+    updatedUser.exercises.push(exercise);
+  
+    // Atualize o usuário no estado
+    setCurrentUser(updatedUser);
+  
+    // Atualize o localStorage com o novo usuário
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+  };
+  
+
   const hideHeaderAndMenu = location.pathname === '/' || 
   location.pathname === '/registro' || 
   location.pathname === '/trocar-senha';
@@ -33,7 +48,7 @@ function App() {
         </div>
       )}
       {!hideHeaderAndMenu && <Header />}
-      <Rotas users={users} registerUser={registerUser} />
+      <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser}/>
     </div>
   );
 }

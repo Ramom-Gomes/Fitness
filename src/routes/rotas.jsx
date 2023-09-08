@@ -5,14 +5,16 @@ import RegisterPage from "../components/registro";
 import BemVindo from "../components/bemvindo";
 import TrocarSenha from "../components/trocarSenha";
 import AtualizarUsuario from "../components/minhasInformacoes";
+import ExerciseList from '../components/exercicios';
 
-const Rotas = ({ users , registerUser }) => (
+const Rotas = ({ users , registerUser, addExerciseToUser }) => (
   <Routes>
     <Route path="/" element={<LoginPage users={users} />} />
     <Route path="/registro" element={<RegisterPage users={users} registerUser={registerUser} />} />
     <Route path='/bemvindo' element={<BemVindo/>}/>
     <Route path="/trocar-senha" element={<TrocarSenha users={users} />} />
     <Route path="/atualizar-usuario" element={<AtualizarUsuario />} />
+    <Route path="/exercise-list" element={<ExerciseList users={users} addExerciseToUser={addExerciseToUser}/>} />
   </Routes>
 );
 

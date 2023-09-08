@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
-  const [startIndex, setStartIndex] = useState(0);
-
-  const loadExercises = async (start) => {
-    const url = `https://exercisedb.p.rapidapi.com/exercises?start=${start}&limit=20&sort=id`; // Adicione &sort=id
+  
+  const loadExercises = async () => {
+    const url = 'https://exercisedb.p.rapidapi.com/exercises';
     const options = {
       method: 'GET',
       headers: {
@@ -28,31 +27,36 @@ function ExerciseList() {
   };
 
   useEffect(() => {
-    loadExercises(startIndex);
-  }, [startIndex]);
+    loadExercises();
+  }, []);
 
-  const handleNext = () => {
-    setStartIndex(startIndex + 20);
-  };
+  const addExerciseToUser = (exercise) => {
+    // Obtenha o usuário logado do localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-  const handlePrevious = () => {
-    if (startIndex >= 20) {
-      setStartIndex(startIndex - 20);
+    // Verifique se o usuário já possui uma lista de exercícios (você pode criar uma se não existir)
+    if (!currentUser.exercises) {
+      currentUser.exercises = [];
     }
+
+    // Adicione o exercício à lista de exercícios do usuário
+    currentUser.exercises.push(exercise);
+
+    // Atualize o usuário no localStorage
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+    // Confirme a adição (você pode mostrar uma mensagem ou fazer o que preferir)
+    alert(`Exercício "${exercise.name}" adicionado ao seu perfil.`);
   };
 
   return (
     <div>
       <h1>Lista de Exercícios</h1>
-      <button onClick={handlePrevious} disabled={startIndex === 0}>
-        Anterior
-      </button>
-      <button onClick={handleNext}>Próximo</button>
       <ul>
         {exerciseList.map((exercise, index) => (
           <li key={index}>
             <h3>Nome: {exercise.name}</h3>
-            <p>ID: {exercise.id}</p> 
+            <p>ID: {exercise.id}</p>
             <p>Parte do Corpo: {exercise.bodyPart}</p>
             <p>Equipamento: {exercise.equipment}</p>
             <img
@@ -60,7 +64,8 @@ function ExerciseList() {
               alt={`Imagem do exercício ${exercise.name}`}
               style={{ maxWidth: '100%', height: 'auto' }}
             />
-            <p>Alvo: {exercise.target}</p> 
+            <p>Alvo: {exercise.target}</p>
+            <button onClick={() => addExerciseToUser(exercise)}>Adicionar</button>
           </li>
         ))}
       </ul>
