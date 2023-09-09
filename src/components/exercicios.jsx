@@ -14,7 +14,7 @@ function BodyPartList() {
     'neck',
   ]);
 
-  const [selectedBodyPart, setSelectedBodyPart] = useState(''); // Estado para rastrear a parte do corpo selecionada
+  const [selectedBodyPart, setSelectedBodyPart] = useState('waist'); // Defina "waist" como o valor inicial
   const [exerciseData, setExerciseData] = useState({});
 
   const loadExercisesByBodyPart = async (bodyPart) => {
@@ -44,10 +44,8 @@ function BodyPartList() {
   };
 
   useEffect(() => {
-    // Se uma parte do corpo for selecionada, carregue os exercícios para essa parte
-    if (selectedBodyPart) {
-      loadExercisesByBodyPart(selectedBodyPart);
-    }
+    // Carregue os exercícios para a parte do corpo inicialmente selecionada ("waist")
+    loadExercisesByBodyPart(selectedBodyPart);
   }, [selectedBodyPart]);
 
   return (
@@ -58,7 +56,6 @@ function BodyPartList() {
         value={selectedBodyPart}
         onChange={(e) => setSelectedBodyPart(e.target.value)}
       >
-        <option value="">Selecione a parte do corpo</option>
         {bodyParts.map((part, index) => (
           <option key={index} value={part}>
             {part}
@@ -66,7 +63,7 @@ function BodyPartList() {
         ))}
       </select>
 
-      {selectedBodyPart && exerciseData[selectedBodyPart] && (
+      {exerciseData[selectedBodyPart] && (
         <div>
           <h2>{selectedBodyPart}</h2>
           <ul>
@@ -74,7 +71,7 @@ function BodyPartList() {
               <li key={index}>
                 <h3>Nome: {exercise.name}</h3>
                 <p>ID: {exercise.id}</p>
-                <img src={exercise.gifUrl} alt="" />
+                {/* Outros detalhes do exercício */}
               </li>
             ))}
           </ul>
