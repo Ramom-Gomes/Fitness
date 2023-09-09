@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css'; // Importe o arquivo de estilo
 
 function AddExerciseScreen({ exercise, onClose }) {
   const [creatingPlan, setCreatingPlan] = useState(false);
   const [newPlanName, setNewPlanName] = useState('');
+  const [existingPlans, setExistingPlans] = useState([]); // Armazenar planos existentes
+
+  useEffect(() => {
+    // Quando a tela é aberta, verifique se o usuário tem planos existentes no localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.planos) {
+      setExistingPlans(currentUser.planos);
+    }
+  }, []);
 
   const handleCreatePlan = () => {
     setCreatingPlan(true);
@@ -32,13 +41,6 @@ function AddExerciseScreen({ exercise, onClose }) {
     setNewPlanName('');
   };
 
-  const handleAddExercise = () => {
-    // Lógica para adicionar o exercício ao usuário
-    // ...
-    // Após a conclusão, chame onClose para fechar a tela
-    onClose();
-  };
-
   return (
     <div className="modal">
       <div className="modal-content">
@@ -48,10 +50,44 @@ function AddExerciseScreen({ exercise, onClose }) {
         <h2>Adicionar Exercício</h2>
         <p>Nome do Exercício: {exercise.name}</p>
         {/* Outros campos para adicionar informações do exercício */}
-        <button onClick={handleAddExercise}>Adicionar</button>
 
         {!creatingPlan ? (
-          <button onClick={handleCreatePlan}>Criar meu Plano</button>
+          <div>
+            <button onClick={handleCreatePlan}>Criar meu Plano</button>
+
+            {/* Exibir planos existentes como botões */}
+            {existingPlans.length > 0 && (
+              <div>
+                <h3>Meus Planos Existentes:</h3>
+                <ul>
+                  {existingPlans.map((plan, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        // Lógica para adicionar o exercício ao plano selecionado
+                        const updatedPlans = existingPlans.map((p) => {
+                          if (p.name === plan.name) {
+                            p.exercises.push(exercise);
+                          }
+                          return p;
+                        });
+
+                        // Atualize os planos do usuário no localStorage
+                        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                        currentUser.planos = updatedPlans;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                        // Feche a tela após adicionar o exercício ao plano
+                        onClose();
+                      }}
+                    >
+                      {plan.name}
+                    </button>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         ) : (
           <div>
             <input
