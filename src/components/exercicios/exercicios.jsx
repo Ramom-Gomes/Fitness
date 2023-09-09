@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import AddExerciseScreen from './addExercicios';
 
 function BodyPartList() {
   const [bodyParts, setBodyParts] = useState([
@@ -16,6 +17,19 @@ function BodyPartList() {
 
   const [selectedBodyPart, setSelectedBodyPart] = useState('waist'); // Defina "waist" como o valor inicial
   const [exerciseData, setExerciseData] = useState({});
+  const [showAddExerciseScreen, setShowAddExerciseScreen] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState(null);
+
+  const handleAddExercise = (exercise) => {
+    setSelectedExercise(exercise);
+    setShowAddExerciseScreen(true);
+    console.log("sim");
+  };
+
+  const handleCloseAddExerciseScreen = () => {
+    setShowAddExerciseScreen(false);
+    setSelectedExercise(null);
+  };
 
   const loadExercisesByBodyPart = async (bodyPart) => {
     const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
@@ -71,11 +85,18 @@ function BodyPartList() {
               <li key={index}>
                 <h3>Nome: {exercise.name}</h3>
                 <p>ID: {exercise.id}</p>
+                <button onClick={() => handleAddExercise(exercise)}>Adicionar</button>
                 {/* Outros detalhes do exercício */}
               </li>
             ))}
           </ul>
         </div>
+      )}
+      {showAddExerciseScreen && (
+        <AddExerciseScreen
+          exercise={selectedExercise}
+          onClose={handleCloseAddExerciseScreen}
+        />
       )}
     </div>
   );

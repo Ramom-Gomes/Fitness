@@ -5,7 +5,7 @@ import RegisterPage from "../components/registro";
 import BemVindo from "../components/bemvindo";
 import TrocarSenha from "../components/trocarSenha";
 import AtualizarUsuario from "../components/minhasInformacoes";
-import ExerciseList from '../components/exercicios';
+import ExerciseList from '../components/exercicios/exercicios';
 import UserExerciseList from '../components/usuarioexercicios';
 
 const Rotas = ({ users , registerUser, addExerciseToUser }) => (
