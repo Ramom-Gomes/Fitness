@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
-function ExerciseList() {
-  const [exerciseList, setExerciseList] = useState([]);
-  
-  const loadExercises = async () => {
-    const url = 'https://exercisedb.p.rapidapi.com/exercises';
+function BodyPartList() {
+  const [bodyParts, setBodyParts] = useState([
+    'waist',
+    'upper legs',
+    'back',
+    'lower legs',
+    'chest',
+    'upper arms',
+    'cardio',
+    'shoulders',
+    'lower arms',
+    'neck',
+  ]);
+
+  const [selectedBodyPart, setSelectedBodyPart] = useState(''); // Estado para rastrear a parte do corpo selecionada
+  const [exerciseData, setExerciseData] = useState({});
+
+  const loadExercisesByBodyPart = async (bodyPart) => {
+    const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
     const options = {
       method: 'GET',
       headers: {
@@ -17,60 +31,57 @@ function ExerciseList() {
       const response = await fetch(url, options);
       if (response.ok) {
         const result = await response.json();
-        setExerciseList(result);
+        setExerciseData((prevData) => ({
+          ...prevData,
+          [bodyPart]: result,
+        }));
       } else {
-        console.error('Erro na resposta da API:', response.status);
+        console.error(`Erro na resposta da API para ${bodyPart}:`, response.status);
       }
     } catch (error) {
-      console.error('Erro ao buscar os dados dos exercícios:', error);
+      console.error(`Erro ao buscar os dados para ${bodyPart}:`, error);
     }
   };
 
   useEffect(() => {
-    loadExercises();
-  }, []);
-
-  const addExerciseToUser = (exercise) => {
-    // Obtenha o usuário logado do localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    // Verifique se o usuário já possui uma lista de exercícios (você pode criar uma se não existir)
-    if (!currentUser.exercises) {
-      currentUser.exercises = [];
+    // Se uma parte do corpo for selecionada, carregue os exercícios para essa parte
+    if (selectedBodyPart) {
+      loadExercisesByBodyPart(selectedBodyPart);
     }
-
-    // Adicione o exercício à lista de exercícios do usuário
-    currentUser.exercises.push(exercise);
-
-    // Atualize o usuário no localStorage
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    // Confirme a adição (você pode mostrar uma mensagem ou fazer o que preferir)
-    alert(`Exercício "${exercise.name}" adicionado ao seu perfil.`);
-  };
+  }, [selectedBodyPart]);
 
   return (
     <div>
-      <h1>Lista de Exercícios</h1>
-      <ul>
-        {exerciseList.map((exercise, index) => (
-          <li key={index}>
-            <h3>Nome: {exercise.name}</h3>
-            <p>ID: {exercise.id}</p>
-            <p>Parte do Corpo: {exercise.bodyPart}</p>
-            <p>Equipamento: {exercise.equipment}</p>
-            <img
-              src={exercise.gifUrl}
-              alt={`Imagem do exercício ${exercise.name}`}
-              style={{ maxWidth: '100%', height: 'auto' }}
-            />
-            <p>Alvo: {exercise.target}</p>
-            <button onClick={() => addExerciseToUser(exercise)}>Adicionar</button>
-          </li>
+      <h1>Lista de Exercícios por Parte do Corpo</h1>
+      {/* Dropdown para selecionar a parte do corpo */}
+      <select
+        value={selectedBodyPart}
+        onChange={(e) => setSelectedBodyPart(e.target.value)}
+      >
+        <option value="">Selecione a parte do corpo</option>
+        {bodyParts.map((part, index) => (
+          <option key={index} value={part}>
+            {part}
+          </option>
         ))}
-      </ul>
+      </select>
+
+      {selectedBodyPart && exerciseData[selectedBodyPart] && (
+        <div>
+          <h2>{selectedBodyPart}</h2>
+          <ul>
+            {exerciseData[selectedBodyPart].map((exercise, index) => (
+              <li key={index}>
+                <h3>Nome: {exercise.name}</h3>
+                <p>ID: {exercise.id}</p>
+                <img src={exercise.gifUrl} alt="" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
 
-export default ExerciseList;
+export default BodyPartList;
