@@ -30,6 +30,13 @@ function AddExerciseScreen({ exercise, onClose }) {
       currentUser.planos = [];
     }
 
+    // Verifique se já existe um plano com o mesmo nome
+    const existingPlan = currentUser.planos.find((plan) => plan.name === newPlanName);
+    if (existingPlan) {
+      alert('Já existe um plano com esse nome. Escolha outro nome para o plano.');
+      return;
+    }
+
     // Adicione o novo plano aos planos do usuário
     currentUser.planos.push(newPlan);
 
@@ -64,21 +71,26 @@ function AddExerciseScreen({ exercise, onClose }) {
                     <button
                       key={index}
                       onClick={() => {
-                        // Lógica para adicionar o exercício ao plano selecionado
-                        const updatedPlans = existingPlans.map((p) => {
-                          if (p.name === plan.name) {
-                            p.exercises.push(exercise);
-                          }
-                          return p;
-                        });
+                        // Verifique se o exercício já está no plano
+                        if (plan.exercises.find((ex) => ex.id === exercise.id)) {
+                          alert('Este exercício já está no plano.');
+                        } else {
+                          // Adicione o exercício ao plano selecionado
+                          const updatedPlans = existingPlans.map((p) => {
+                            if (p.name === plan.name) {
+                              p.exercises.push(exercise);
+                            }
+                            return p;
+                          });
 
-                        // Atualize os planos do usuário no localStorage
-                        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                        currentUser.planos = updatedPlans;
-                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                          // Atualize os planos do usuário no localStorage
+                          const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                          currentUser.planos = updatedPlans;
+                          localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
-                        // Feche a tela após adicionar o exercício ao plano
-                        onClose();
+                          // Feche a tela após adicionar o exercício ao plano
+                          onClose();
+                        }
                       }}
                     >
                       {plan.name}
