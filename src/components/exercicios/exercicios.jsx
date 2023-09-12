@@ -28,7 +28,6 @@ function BodyPartList() {
   const handleAddExercise = (exercise) => {
     setSelectedExercise(exercise);
     setShowAddExerciseScreen(true);
-    console.log('sim');
   };
 
   const handleCloseAddExerciseScreen = () => {
