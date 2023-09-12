@@ -15,15 +15,20 @@ function BodyPartList() {
     'neck',
   ]);
 
-  const [selectedBodyPart, setSelectedBodyPart] = useState('waist'); // Defina "waist" como o valor inicial
+  const [selectedBodyPart, setSelectedBodyPart] = useState('waist');
   const [exerciseData, setExerciseData] = useState({});
   const [showAddExerciseScreen, setShowAddExerciseScreen] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState(null);
 
+  // Usamos o localStorage para armazenar em cache os dados das partes do corpo
+  const [cache, setCache] = useState(
+    JSON.parse(localStorage.getItem('exerciseCache')) || {}
+  );
+
   const handleAddExercise = (exercise) => {
     setSelectedExercise(exercise);
     setShowAddExerciseScreen(true);
-    console.log("sim");
+    console.log('sim');
   };
 
   const handleCloseAddExerciseScreen = () => {
@@ -32,11 +37,20 @@ function BodyPartList() {
   };
 
   const loadExercisesByBodyPart = async (bodyPart) => {
+    // Verifique se os dados para a parte do corpo já estão em cache
+    if (cache[bodyPart]) {
+      setExerciseData((prevData) => ({
+        ...prevData,
+        [bodyPart]: cache[bodyPart],
+      }));
+      return;
+    }
+
     const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '3a240a2a0bmsh5f1c9de784f6d77p11cd54jsnd98baf62906d',
+        'X-RapidAPI-Key': '7b0db3975cmsh3cab4257d2d34f8p1ba700jsn763981227f44',
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
       },
     };
@@ -45,10 +59,18 @@ function BodyPartList() {
       const response = await fetch(url, options);
       if (response.ok) {
         const result = await response.json();
+        // Armazene os dados em cache
+        setCache((prevCache) => ({
+          ...prevCache,
+          [bodyPart]: result,
+        }));
         setExerciseData((prevData) => ({
           ...prevData,
           [bodyPart]: result,
         }));
+
+        // Atualize o localStorage com os dados em cache
+        localStorage.setItem('exerciseCache', JSON.stringify(cache));
       } else {
         console.error(`Erro na resposta da API para ${bodyPart}:`, response.status);
       }
@@ -58,14 +80,12 @@ function BodyPartList() {
   };
 
   useEffect(() => {
-    // Carregue os exercícios para a parte do corpo inicialmente selecionada ("waist")
     loadExercisesByBodyPart(selectedBodyPart);
   }, [selectedBodyPart]);
 
   return (
     <div>
       <h1>Lista de Exercícios por Parte do Corpo</h1>
-      {/* Dropdown para selecionar a parte do corpo */}
       <select
         value={selectedBodyPart}
         onChange={(e) => setSelectedBodyPart(e.target.value)}
@@ -86,7 +106,6 @@ function BodyPartList() {
                 <h3>Nome: {exercise.name}</h3>
                 <p>ID: {exercise.id}</p>
                 <button onClick={() => handleAddExercise(exercise)}>Adicionar</button>
-                {/* Outros detalhes do exercício */}
               </li>
             ))}
           </ul>
