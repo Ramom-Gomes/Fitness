@@ -46,6 +46,7 @@ function AddExerciseScreen({ exercise, onClose }) {
     // Após a conclusão, redefina o estado
     setCreatingPlan(false);
     setNewPlanName('');
+    onClose();
   };
 
   return (
