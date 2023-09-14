@@ -1,0 +1,51 @@
+body {
+    background-color: black;
+}
+
+.main {
+    margin: auto;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.campo-email, .campo-senha {
+  border: none;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+  outline: none;
+  width: 200px;
+}
+
+.campo-senha {
+    margin-top: 30px;
+}
+
+.campo-email:focus {
+    border-bottom: 2px solid #00f;
+}
+
+.botao-login {
+    margin-top: 30px;
+    width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+}
+
+.links {
+    display: flex;
+    margin-top: 30px;
+}
+
+.link-criarLogin {
+    margin-right: 15px;
+}
+
+.link-redefinirSenha {
+    margin-left: 15px;
+}
