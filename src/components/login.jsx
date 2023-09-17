@@ -40,9 +40,9 @@ function LoginPage({ users }) {
       <main className={`main`}>
         <h2 className={`imagem`}>Login</h2>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        {errorUser && <p>{errorUser}</p>}
+        <p className={`email-error ${errorUser ? 'show' : ''}`}>{errorUser}</p>
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {errorPassword && <p>{errorPassword}</p>}
+        <p className={`senha-error ${errorPassword ? 'show' : ''}`}>{errorPassword}</p>
         <div className={`links`}>
           <Link className={`link-criarLogin`} to="/registro">Criar meu login</Link>
           <Link className={`link-redefinirSenha`} to="/trocar-senha">Esqueci minha senha</Link>
