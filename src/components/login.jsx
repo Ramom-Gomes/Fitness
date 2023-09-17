@@ -6,7 +6,8 @@ import '../estilizações/login.css';
 function LoginPage({ users }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorUser, setErrorUser] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,9 +24,11 @@ function LoginPage({ users }) {
     );
   
     if (!user) {
-      setError("Usuário não encontrado.");
+      setErrorUser("Usuário não encontrado.");
+      setErrorPassword("");
     } else if (user.password !== password) {
-      setError("Senha incorreta.");
+      setErrorPassword("Senha incorreta.");
+      setErrorUser("");
     } else {
       localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
       navigate(`/bemvindo`); // Navegar para a página de boas-vindas
@@ -37,9 +40,9 @@ function LoginPage({ users }) {
       <main className={`main`}>
         <h2 className={`imagem`}>Login</h2>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        {error && <p>{error}</p>}
+        {errorUser && <p>{errorUser}</p>}
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {error && <p>{error}</p>}
+        {errorPassword && <p>{errorPassword}</p>}
         <div className={`links`}>
           <Link className={`link-criarLogin`} to="/registro">Criar meu login</Link>
           <Link className={`link-redefinirSenha`} to="/trocar-senha">Esqueci minha senha</Link>
