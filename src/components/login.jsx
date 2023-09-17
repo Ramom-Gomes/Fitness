@@ -33,9 +33,9 @@ function LoginPage({ users }) {
   };
 
   return (
-    <>
+    <div className={`container`}>
       <main className={`main`}>
-        <h2>Login</h2>
+        <h2 className={`imagem`}>Login</h2>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         {error && <p>{error}</p>}
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -46,7 +46,7 @@ function LoginPage({ users }) {
         </div>
         <button className={`botao-login`} onClick={handleLogin}>Login</button>
       </main>
-    </>
+    </div>
   );
 }
 
