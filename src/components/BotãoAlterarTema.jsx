@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleTheme } from '../Redux/themeActions';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 function AlterarTema({ theme, toggleTheme }) {
   return (
-    <button onClick={toggleTheme}>
-      Alternar Tema ({theme === 'light' ? 'Claro' : 'Escuro'})
-    </button>
+    <p onClick={toggleTheme}>{theme === 'light' ? <FaMoon/> : <FaSun/>}</p>
   );
 }
 

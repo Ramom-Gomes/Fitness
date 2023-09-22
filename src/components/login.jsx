@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSun, FaMoon } from 'react-icons/fa';
 import '../estilizações/login.css';
 import AlterarTema from './BotãoAlterarTema';
 import { connect } from 'react-redux';
