@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import '../estilizações/login.css';
 import AlterarTema from './BotãoAlterarTema';
 import { connect } from 'react-redux';
+import Musculação from '../images/Musculação.png'
 
 function LoginPage({ users, theme }) {
   const [email, setEmail] = useState("");
@@ -39,8 +40,10 @@ function LoginPage({ users, theme }) {
   return (
     <div className={`container${theme === 'light' ? '-light' : ''}`}>
       <main className={`main`}>
-        <h2 className={`imagem`}>Login</h2>
-        <AlterarTema/>
+        <div className="tema-imagem">
+          <img src={Musculação} className="imagem" alt="" />
+          <AlterarTema className={'tema'}/>
+        </div>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <p className={`email-error ${errorUser ? 'show' : ''}`}>{errorUser}</p>
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />

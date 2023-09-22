@@ -30,9 +30,20 @@
     width: 100%;
 }
 
+.tema-imagem {
+  display: flex;
+}
+
+.tema {
+  margin: 0;
+  padding: 0;
+}
+
 .imagem {
     margin-top: 35px;
     margin-bottom: 30px;
+    width: 100px;
+    height: 100px;
 }
 
 .campo-email, .campo-senha {
