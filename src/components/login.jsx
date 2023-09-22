@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from 'react-icons/fa';
 import '../estilizações/login.css';
+import AlterarTema from './BotãoAlterarTema';
+import { connect } from 'react-redux';
 
-function LoginPage({ users }) {
+function LoginPage({ users, theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState("");
@@ -36,9 +38,10 @@ function LoginPage({ users }) {
   };
 
   return (
-    <div className={`container`}>
+    <div className={`container${theme === 'light' ? '-light' : ''}`}>
       <main className={`main`}>
         <h2 className={`imagem`}>Login</h2>
+        <AlterarTema/>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <p className={`email-error ${errorUser ? 'show' : ''}`}>{errorUser}</p>
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -53,4 +56,8 @@ function LoginPage({ users }) {
   );
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => ({
+  theme: state.theme,
+});
+
+export default connect(mapStateToProps)(LoginPage); // Conecte o componente ao Redux

@@ -6,6 +6,14 @@
   min-height: 100vh;
 }
 
+.container-light {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .main {
     background-color: green;
     display: flex;

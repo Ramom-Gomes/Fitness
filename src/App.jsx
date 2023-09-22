@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import Rotas from './routes/rotas';
 import Header from './components/Header';
 import Menu from './components/Menu';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -42,15 +44,17 @@ function App() {
   location.pathname === '/trocar-senha';
 
   return (
-    <div>
-      {!hideHeaderAndMenu && (
-        <div>
-          <Menu />
-        </div>
-      )}
-      {!hideHeaderAndMenu && <Header />}
-      <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser}/>
-    </div>
+      <Provider store={store}>
+          <div>
+              {!hideHeaderAndMenu && (
+            <div>
+              <Menu />
+            </div>
+            )}
+              {!hideHeaderAndMenu && <Header />}
+            <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser}/>
+          </div>
+      </Provider>
   );
 }
 
