@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
+import '../estilizações/registro.css';
 
 function RegisterPage({ registerUser, users }) {
   const navigate = useNavigate();
@@ -108,120 +109,132 @@ function RegisterPage({ registerUser, users }) {
   };
 
   return (
-    <div>
-      <h2>Registro - Etapa {currentStep}</h2>
-      {currentStep === 1 && (
-        <>
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={newUser.email}
-            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-          />
-          {errors.email && <p>{errors.email}</p>}
-          {emailInUse && <p>O e-mail já está em uso.</p>}
+    <div className={'container'}>
+      <div className={'main'}>
+        <h2>Registro - Etapa {currentStep}</h2>
+        {currentStep === 1 && (
+          <>
+            <p>"Fique forte, comece pelo básico! 
+              O primeiro passo é cuidar da sua saúde e definir seus objetivos."
+            </p>
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={newUser.email}
+              onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+            />
+            {errors.email && <p>{errors.email}</p>}
+            {emailInUse && <p>O e-mail já está em uso.</p>}
 
-          <input
-            type="password"
-            placeholder="Senha"
-            value={newUser.password}
-            onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-          />
-          {errors.password && <p>{errors.password}</p>}
+            <input
+              type="password"
+              placeholder="Senha"
+              value={newUser.password}
+              onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+            />
+            {errors.password && <p>{errors.password}</p>}
 
-          <input
-            type="password"
-            placeholder="Confirme a senha"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            <input
+              type="password"
+              placeholder="Confirme a senha"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 
-          <input
-            type="text"
-            placeholder="Nome"
-            value={newUser.nome}
-            onChange={(e) => setNewUser({ ...newUser, nome: e.target.value })}
-          />
-          {errors.nome && <p>{errors.nome}</p>}
-        </>
-      )}
+            <input
+              type="text"
+              placeholder="Nome"
+              value={newUser.nome}
+              onChange={(e) => setNewUser({ ...newUser, nome: e.target.value })}
+            />
+            {errors.nome && <p>{errors.nome}</p>}
+          </>
+        )}
 
-      {currentStep === 2 && (
-        <>
-          <input
-            type="text"
-            placeholder="Idade"
-            value={newUser.idade}
-            onChange={(e) => setNewUser({ ...newUser, idade: e.target.value })}
-          />
-          {errors.idade && <p>{errors.idade}</p>}
+        {currentStep === 2 && (
+          <>
+            <p>"Sua jornada para um corpo saudável está em andamento! 
+              A idade é apenas um número, e sua determinação fará a diferença."
+            </p>
+            <input
+              type="text"
+              placeholder="Idade"
+              value={newUser.idade}
+              onChange={(e) => setNewUser({ ...newUser, idade: e.target.value })}
+            />
+            {errors.idade && <p>{errors.idade}</p>}
 
-          <input
-            type="text"
-            placeholder="Peso"
-            value={newUser.peso}
-            onChange={(e) => setNewUser({ ...newUser, peso: e.target.value })}
-          />
-          {errors.peso && <p>{errors.peso}</p>}
+            <input
+              type="text"
+              placeholder="Peso"
+              value={newUser.peso}
+              onChange={(e) => setNewUser({ ...newUser, peso: e.target.value })}
+            />
+            {errors.peso && <p>{errors.peso}</p>}
 
-          <input
-            type="text"
-            placeholder="Altura (ex: 1.70)"
-            value={newUser.altura}
-            onChange={(e) => setNewUser({ ...newUser, altura: e.target.value })}
-          />
-          {errors.altura && <p>{errors.altura}</p>}
+            <input
+              type="text"
+              placeholder="Altura (ex: 1.70)"
+              value={newUser.altura}
+              onChange={(e) => setNewUser({ ...newUser, altura: e.target.value })}
+            />
+            {errors.altura && <p>{errors.altura}</p>}
 
-          <input
-            type="text"
-            placeholder="Sexo"
-            value={newUser.sexo}
-            onChange={(e) => setNewUser({ ...newUser, sexo: e.target.value })}
-          />
-          {errors.sexo && <p>{errors.sexo}</p>}
-        </>
-      )}
+            <input
+              type="text"
+              placeholder="Sexo"
+              value={newUser.sexo}
+              onChange={(e) => setNewUser({ ...newUser, sexo: e.target.value })}
+            />
+            {errors.sexo && <p>{errors.sexo}</p>}
+          </>
+        )}
 
-      {currentStep === 3 && (
-        <>
-          <input
-            type="text"
-            placeholder="Objetivo"
-            value={newUser.objetivo}
-            onChange={(e) => setNewUser({ ...newUser, objetivo: e.target.value })}
-          />
-          {errors.objetivo && <p>{errors.objetivo}</p>}
+        {currentStep === 3 && (
+          <>
+            <p>"Continue firme na busca pelos seus objetivos! Sua determinação e consistência na 
+              definição de metas e na frequência de treino o levarão a 
+              uma vida mais saudável e ativa."
+            </p>
+            <input
+              type="text"
+              placeholder="Objetivo"
+              value={newUser.objetivo}
+              onChange={(e) => setNewUser({ ...newUser, objetivo: e.target.value })}
+            />
+            {errors.objetivo && <p>{errors.objetivo}</p>}
 
-          <input
-            type="text"
-            placeholder="Nível de Condicionamento"
-            value={newUser.nivelCondicionamento}
-            onChange={(e) => setNewUser({ ...newUser, nivelCondicionamento: e.target.value })}
-          />
-          {errors.nivelCondicionamento && <p>{errors.nivelCondicionamento}</p>}
+            <input
+              type="text"
+              placeholder="Nível de Condicionamento"
+              value={newUser.nivelCondicionamento}
+              onChange={(e) => setNewUser({ ...newUser, nivelCondicionamento: e.target.value })}
+            />
+            {errors.nivelCondicionamento && <p>{errors.nivelCondicionamento}</p>}
 
-          <input
-            type="text"
-            placeholder="Frequência de Treino"
-            value={newUser.frequenciaTreino}
-            onChange={(e) => setNewUser({ ...newUser, frequenciaTreino: e.target.value })}
-          />
-          {errors.frequenciaTreino && <p>{errors.frequenciaTreino}</p>}
+            <input
+              type="text"
+              placeholder="Frequência de Treino"
+              value={newUser.frequenciaTreino}
+              onChange={(e) => setNewUser({ ...newUser, frequenciaTreino: e.target.value })}
+            />
+            {errors.frequenciaTreino && <p>{errors.frequenciaTreino}</p>}
 
-          <input
-            type="text"
-            placeholder="Palavra-chave"
-            value={newUser.palavraChave}
-            onChange={(e) => setNewUser({ ...newUser, palavraChave: e.target.value })}
-          />
-          {errors.palavraChave && <p>{errors.palavraChave}</p>}
-        </>
-      )}
+            <input
+              type="text"
+              placeholder="Palavra-chave"
+              value={newUser.palavraChave}
+              onChange={(e) => setNewUser({ ...newUser, palavraChave: e.target.value })}
+            />
+            {errors.palavraChave && <p>{errors.palavraChave}</p>}
+          </>
+        )}
 
-      <button onClick={handleNextStep}>
-        {currentStep < 3 ? "Próxima Etapa" : "Registrar"}
-      </button>
+        <button onClick={handleNextStep}>
+          {currentStep < 3 ? "Próxima Etapa" : "Registrar"}
+        </button>
+      </div>
     </div>
   );
 }
