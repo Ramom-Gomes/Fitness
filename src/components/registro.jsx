@@ -23,11 +23,12 @@ function RegisterPage({ registerUser, users }) {
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [emailInUse, setEmailInUse] = useState(false);
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     const newErrors = {};
 
-    // Valide os campos da etapa atual antes de avançar
+    // Valida os campos da etapa atual antes de avançar
     if (currentStep === 1) {
       if (!newUser.email || !validator.isEmail(newUser.email)) {
         newErrors.email = "Digite um e-mail válido.";
@@ -40,6 +41,16 @@ function RegisterPage({ registerUser, users }) {
       }
       if (!newUser.nome) {
         newErrors.nome = "Este campo é obrigatório.";
+      }
+
+      // Verifica se o e-mail já está em uso
+      const existingUser = users.find((user) => user.email === newUser.email);
+
+      if (existingUser) {
+        setEmailInUse(true);
+        return;
+      } else {
+        setEmailInUse(false);
       }
     } else if (currentStep === 2) {
       if (!newUser.idade || !validator.isInt(newUser.idade)) {
@@ -73,29 +84,23 @@ function RegisterPage({ registerUser, users }) {
       if (currentStep < 3) {
         setCurrentStep(currentStep + 1);
       } else {
-        const existingUser = users.find((user) => user.email === newUser.email);
-
-        if (existingUser) {
-          newErrors.email = "Este e-mail já está sendo usado.";
-        } else {
-          registerUser(newUser);
-          localStorage.setItem('currentUser', JSON.stringify(newUser));
-          setNewUser({
-            email: "",
-            password: "",
-            nome: "",
-            idade: "",
-            peso: "",
-            palavraChave: "",
-            altura: "",
-            sexo: "",
-            objetivo: "",
-            nivelCondicionamento: "",
-            frequenciaTreino: "",
-          });
-          setConfirmPassword("");
-          navigate('/bemvindo');
-        }
+        registerUser(newUser);
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        setNewUser({
+          email: "",
+          password: "",
+          nome: "",
+          idade: "",
+          peso: "",
+          palavraChave: "",
+          altura: "",
+          sexo: "",
+          objetivo: "",
+          nivelCondicionamento: "",
+          frequenciaTreino: "",
+        });
+        setConfirmPassword("");
+        navigate('/bemvindo');
       }
     }
 
@@ -114,6 +119,7 @@ function RegisterPage({ registerUser, users }) {
             onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
           />
           {errors.email && <p>{errors.email}</p>}
+          {emailInUse && <p>O e-mail já está em uso.</p>}
 
           <input
             type="password"
