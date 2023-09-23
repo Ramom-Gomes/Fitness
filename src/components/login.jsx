@@ -40,10 +40,7 @@ function LoginPage({ users, theme }) {
   return (
     <div className={`container${theme === 'light' ? '-light' : ''}`}>
       <main className={`main`}>
-        <div className="tema-imagem">
           <img src={Musculação} className="imagem" alt="" />
-          <AlterarTema className={'tema'}/>
-        </div>
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <p className={`email-error ${errorUser ? 'show' : ''}`}>{errorUser}</p>
         <input className={`campo-senha`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
