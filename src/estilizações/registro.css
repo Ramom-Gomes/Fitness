@@ -15,4 +15,66 @@
     padding: 30px;
     border-radius: 40px;
     position: relative;
+} 
+
+.mensagem-motivacional {
+  font-size: 19px;
+}
+
+.mensagem-container {
+  max-width: 400px;
+  margin-top: 25px;
+}
+
+.input-senha, .input-confirmarSenha, .input-nome, .input-email {
+  margin-top: 40px;
+  border: none;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+  outline: none;
+  width: 200px;
+}
+
+.botao-registro {
+  margin-top: 40px;
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: none;
+}
+
+.email-error, .senha-error, .confirmarSenha-error, .nome-error,
+.email-error-user {
+  visibility: hidden;
+  color: red;
+  position: absolute;
+  bottom: 251px;
+  margin-right: 30px;
+}
+
+.senha-error {
+  bottom: 193px;
+  margin-left: 100px;
+}
+
+.confirmarSenha-error {
+  bottom: 138px;
+}
+
+.nome-error {
+  bottom: 80px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
+
+.email-error.show,
+.senha-error.show, .confirmarSenha-error.show, .nome-error.show,
+.email-error-user.show {
+visibility: visible;
+animation: shake 0.5s ease forwards;
 }

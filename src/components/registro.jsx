@@ -110,45 +110,51 @@ function RegisterPage({ registerUser, users }) {
 
   return (
     <div className={'container'}>
-      <div className={'main'}>
+      <div className={'main'}> 
         <h2>Registro - Etapa {currentStep}</h2>
         {currentStep === 1 && (
           <>
-            <p>"Fique forte, comece pelo básico! 
-              O primeiro passo é cuidar da sua saúde e definir seus objetivos."
-            </p>
+            <div className={'mensagem-container'}>
+              <p className={'mensagem-motivacional'}>"Fique forte, comece pelo básico! 
+                O primeiro passo é cuidar da sua saúde e definir seus objetivos."
+              </p>
+            </div>
             <input
+              className={'input-email'}
               type="email"
               placeholder="E-mail"
               value={newUser.email}
               onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
             />
-            {errors.email && <p>{errors.email}</p>}
-            {emailInUse && <p>O e-mail já está em uso.</p>}
-
+            {errors.email && <p className={`email-error ${errors.email ? 'show' : ''}`}>{errors.email}</p>}
+            {emailInUse && <p className={`email-error-user ${emailInUse ? 'show' : ''}`}>O e-mail já está em uso.</p>}
+            
             <input
+              className={'input-senha'}
               type="password"
               placeholder="Senha"
               value={newUser.password}
               onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
             />
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && <p className={`senha-error ${errors.password ? 'show' : ''}`}>{errors.password}</p>}
 
             <input
+              className={'input-confirmarSenha'}
               type="password"
               placeholder="Confirme a senha"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <p className={`confirmarSenha-error ${errors.confirmPassword ? 'show' : ''}`}>{errors.confirmPassword}</p>}
 
             <input
+              className={'input-nome'}
               type="text"
               placeholder="Nome"
               value={newUser.nome}
               onChange={(e) => setNewUser({ ...newUser, nome: e.target.value })}
             />
-            {errors.nome && <p>{errors.nome}</p>}
+            {errors.nome && <p className={`nome-error ${errors.nome ? 'show' : ''}`}>{errors.nome}</p>}
           </>
         )}
 
@@ -231,7 +237,7 @@ function RegisterPage({ registerUser, users }) {
           </>
         )}
 
-        <button onClick={handleNextStep}>
+        <button className={'botao-registro'} onClick={handleNextStep}>
           {currentStep < 3 ? "Próxima Etapa" : "Registrar"}
         </button>
       </div>

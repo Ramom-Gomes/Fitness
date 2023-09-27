@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100vh; 
 }
 
 .main {
@@ -44,7 +44,7 @@
   width: 200px;
 }
 
-.email-error {
+.email-error, .senha-error {
   visibility: hidden;
   color: red;
   position: absolute;
@@ -53,9 +53,6 @@
 }
 
 .senha-error {
-  visibility: hidden;
-  color: red;
-  position: absolute;
   bottom: 140px;
   margin-right: 80px;
 }
