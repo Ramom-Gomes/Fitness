@@ -24,6 +24,7 @@
 .mensagem-container {
   max-width: 400px;
   margin-top: 25px;
+  line-height: 23px;
 }
 
 .input-senha, .input-confirmarSenha, .input-nome, .input-email {
