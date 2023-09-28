@@ -6,7 +6,7 @@ import '../estilizações/registro.css';
 function RegisterPage({ registerUser, users }) {
   const navigate = useNavigate();
 
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const [newUser, setNewUser] = useState({
     email: "",
@@ -212,36 +212,40 @@ function RegisterPage({ registerUser, users }) {
               </p>
             </div>
             <input
+              className={'input-objetivo'}
               type="text"
               placeholder="Objetivo"
               value={newUser.objetivo}
               onChange={(e) => setNewUser({ ...newUser, objetivo: e.target.value })}
             />
-            {errors.objetivo && <p>{errors.objetivo}</p>}
+            {errors.objetivo && <p className={`objetivo-error ${errors.objetivo ? 'show' : ''}`}>{errors.objetivo}</p>}
 
             <input
+              className={'input-condicionamento'}
               type="text"
               placeholder="Nível de Condicionamento"
               value={newUser.nivelCondicionamento}
               onChange={(e) => setNewUser({ ...newUser, nivelCondicionamento: e.target.value })}
             />
-            {errors.nivelCondicionamento && <p>{errors.nivelCondicionamento}</p>}
+            {errors.nivelCondicionamento && <p className={`condicionamento-error ${errors.nivelCondicionamento ? 'show' : ''}`}>{errors.nivelCondicionamento}</p>}
 
             <input
+              className={'input-frequencia'}
               type="text"
               placeholder="Frequência de Treino"
               value={newUser.frequenciaTreino}
               onChange={(e) => setNewUser({ ...newUser, frequenciaTreino: e.target.value })}
             />
-            {errors.frequenciaTreino && <p>{errors.frequenciaTreino}</p>}
+            {errors.frequenciaTreino && <p className={`frequencia-error ${errors.frequenciaTreino ? 'show' : ''}`}>{errors.frequenciaTreino}</p>}
 
             <input
+              className={'input-chave'}
               type="text"
               placeholder="Palavra-chave"
               value={newUser.palavraChave}
               onChange={(e) => setNewUser({ ...newUser, palavraChave: e.target.value })}
             />
-            {errors.palavraChave && <p>{errors.palavraChave}</p>}
+            {errors.palavraChave && <p className={`chave-error ${errors.palavraChave ? 'show' : ''}`}>{errors.palavraChave}</p>}
           </>
         )}
 

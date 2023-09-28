@@ -28,7 +28,9 @@
 }
 
 .input-senha, .input-confirmarSenha, .input-nome, .input-email,
-.input-idade, .input-peso, .input-altura, .input-sexo {
+.input-idade, .input-peso, .input-altura, .input-sexo, 
+.input-objetivo, .input-condicionamento, .input-frequencia,
+.input-chave {
   margin-top: 40px;
   border: none;
   border-bottom: 2px solid #000;
@@ -48,7 +50,8 @@
 
 .email-error, .senha-error, .confirmarSenha-error, .nome-error,
 .email-error-user, .idade-error, .peso-error, .altura-error,
-.sexo-error {
+.sexo-error, .objetivo-error, .condicionamento-error,
+.frequencia-error, .chave-error {
   visibility: hidden;
   color: red;
   position: absolute;
@@ -56,12 +59,15 @@
   margin-right: 30px;
 }
 
-.senha-error {
+.senha-error, .peso-error, .condicionamento-error {
   bottom: 193px;
+}
+
+.senha-error {
   margin-left: 100px;
 }
 
-.confirmarSenha-error, .altura-error {
+.confirmarSenha-error, .altura-error, .frequencia-error {
   bottom: 138px;
 }
 
@@ -69,13 +75,16 @@
   margin-left: 65px;
 }
 
-.nome-error, .sexo-error {
+.nome-error, .sexo-error, .chave-error {
   bottom: 80px;
 }
 
 .peso-error {
-  bottom: 193px;
   margin-left: 60px;
+}
+
+.condicionamento-error {
+  bottom: 193px;
 }
 
 @keyframes shake {
@@ -87,7 +96,8 @@
 .email-error.show,
 .senha-error.show, .confirmarSenha-error.show, .nome-error.show,
 .email-error-user.show, .idade-error.show, .peso-error.show,
-.altura-error.show, .sexo-error.show {
+.altura-error.show, .sexo-error.show, .objetivo-error.show,
+.condicionamento-error.show, .frequencia-error.show, .chave-error.show {
 visibility: visible;
 animation: shake 0.5s ease forwards;
 }
