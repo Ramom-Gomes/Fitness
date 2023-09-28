@@ -27,7 +27,8 @@
   line-height: 23px;
 }
 
-.input-senha, .input-confirmarSenha, .input-nome, .input-email {
+.input-senha, .input-confirmarSenha, .input-nome, .input-email,
+.input-idade, .input-peso, .input-altura, .input-sexo {
   margin-top: 40px;
   border: none;
   border-bottom: 2px solid #000;
@@ -46,7 +47,8 @@
 }
 
 .email-error, .senha-error, .confirmarSenha-error, .nome-error,
-.email-error-user {
+.email-error-user, .idade-error, .peso-error, .altura-error,
+.sexo-error {
   visibility: hidden;
   color: red;
   position: absolute;
@@ -59,12 +61,21 @@
   margin-left: 100px;
 }
 
-.confirmarSenha-error {
+.confirmarSenha-error, .altura-error {
   bottom: 138px;
 }
 
-.nome-error {
+.altura-error, .idade-error {
+  margin-left: 65px;
+}
+
+.nome-error, .sexo-error {
   bottom: 80px;
+}
+
+.peso-error {
+  bottom: 193px;
+  margin-left: 60px;
 }
 
 @keyframes shake {
@@ -75,7 +86,8 @@
 
 .email-error.show,
 .senha-error.show, .confirmarSenha-error.show, .nome-error.show,
-.email-error-user.show {
+.email-error-user.show, .idade-error.show, .peso-error.show,
+.altura-error.show, .sexo-error.show {
 visibility: visible;
 animation: shake 0.5s ease forwards;
 }

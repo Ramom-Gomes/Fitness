@@ -6,7 +6,7 @@ import '../estilizações/registro.css';
 function RegisterPage({ registerUser, users }) {
   const navigate = useNavigate();
 
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
 
   const [newUser, setNewUser] = useState({
     email: "",
@@ -160,49 +160,57 @@ function RegisterPage({ registerUser, users }) {
 
         {currentStep === 2 && (
           <>
-            <p>"Sua jornada para um corpo saudável está em andamento! 
-              A idade é apenas um número, e sua determinação fará a diferença."
-            </p>
+            <div className={'mensagem-container'}>
+              <p className={'mensagem-motivacional'}>"Sua jornada para um corpo saudável está em andamento! 
+                A idade é apenas um número, e sua determinação fará a diferença."
+              </p>
+            </div>
             <input
+              className={'input-idade'}
               type="text"
               placeholder="Idade"
               value={newUser.idade}
               onChange={(e) => setNewUser({ ...newUser, idade: e.target.value })}
             />
-            {errors.idade && <p>{errors.idade}</p>}
+            {errors.idade && <p className={`idade-error ${errors.idade ? 'show' : ''}`}>{errors.idade}</p>}
 
             <input
+              className={'input-peso'}
               type="text"
               placeholder="Peso"
               value={newUser.peso}
               onChange={(e) => setNewUser({ ...newUser, peso: e.target.value })}
             />
-            {errors.peso && <p>{errors.peso}</p>}
+            {errors.peso && <p className={`peso-error ${errors.peso ? 'show' : ''}`}>{errors.peso}</p>}
 
             <input
+              className={'input-altura'}
               type="text"
               placeholder="Altura (ex: 1.70)"
               value={newUser.altura}
               onChange={(e) => setNewUser({ ...newUser, altura: e.target.value })}
             />
-            {errors.altura && <p>{errors.altura}</p>}
+            {errors.altura && <p className={`altura-error ${errors.altura ? 'show' : ''}`}>{errors.altura}</p>}
 
             <input
+              className={'input-sexo'}
               type="text"
               placeholder="Sexo"
               value={newUser.sexo}
               onChange={(e) => setNewUser({ ...newUser, sexo: e.target.value })}
             />
-            {errors.sexo && <p>{errors.sexo}</p>}
+            {errors.sexo && <p className={`sexo-error ${errors.sexo ? 'show' : ''}`}>{errors.sexo}</p>}
           </>
         )}
 
         {currentStep === 3 && (
           <>
-            <p>"Continue firme na busca pelos seus objetivos! Sua determinação e consistência na 
-              definição de metas e na frequência de treino o levarão a 
-              uma vida mais saudável e ativa."
-            </p>
+            <div className={'mensagem-container'}>
+              <p className={'mensagem-motivacional'}>"Continue firme na busca pelos seus objetivos! Sua determinação e consistência na 
+                definição de metas e na frequência de treino o levarão a 
+                uma vida mais saudável e ativa."
+              </p>
+            </div>
             <input
               type="text"
               placeholder="Objetivo"
