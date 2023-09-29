@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function BemVindo() {
   const navigate = useNavigate();
+  const menuOpen = useSelector((state) => state.menu.menuOpen);
 
   const [userData, setUserData] = useState({
     nome: "",
@@ -38,7 +40,7 @@ function BemVindo() {
   };
 
   return (
-    <div>
+    <div className={`content ${menuOpen ? 'content-shifted' : ''}`}>
       <h2>Olá, {userData.nome}!</h2>
       <p>Idade: {userData.idade}</p>
       <p>Peso: {userData.peso} kg</p>

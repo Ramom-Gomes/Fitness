@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Musculação from '../images/Musculação.png'
 
 function LoginPage({ users, theme }) {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
