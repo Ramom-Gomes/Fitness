@@ -4,6 +4,23 @@
     box-sizing: border-box;
 }
 
-.main-app {
+.container-app{
     display: flex;
-}
+  }
+  
+  .header {
+    
+  }
+  
+  /* Estilos para o menu */
+  .menu {
+    background-color: black;
+    padding: 10px;
+  }
+  
+  /* Estilos para as rotas */
+  .routes {
+    flex: 1;
+    overflow-y: auto;
+  }
+  

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../Redux/themeActions';
+import '../estilizações/menu.css';
 
 function Menu() {
   const dispatch = useDispatch();
@@ -11,18 +12,8 @@ function Menu() {
   };
 
   return (
-    <div>
-      <button className="menu-button" onClick={handleToggleMenu}>
-        ☰ Abrir Menu
-      </button>
-
-      <div className={`menu ${menuOpen ? 'open' : ''}`}>
-        <button className="close-button" onClick={handleToggleMenu}>
-          ✕ Fechar Menu
-        </button>
+    <div className="container-menu">
         <h1>MENU</h1>
-        {/* Itens do menu aqui */}
-      </div>
     </div>
   );
 }

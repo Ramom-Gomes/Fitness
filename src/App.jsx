@@ -44,17 +44,15 @@ function App() {
   location.pathname === '/trocar-senha';
 
   return (
-      <Provider store={store}>
-          <div>
-              {!hideHeaderAndMenu && (
-            <div>
-              <Menu />
-            </div>
-            )}
-              {!hideHeaderAndMenu && <Header />}
-            <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser}/>
-          </div>
-      </Provider>
+    <Provider store={store}>
+    <div className="container-app">
+      {!hideHeaderAndMenu && <Menu className="menu" />}
+      <div className="routes">
+        {!hideHeaderAndMenu && <Header className="header" />}
+        <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser} />
+      </div>
+    </div>
+  </Provider>
   );
 }
 
