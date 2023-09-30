@@ -27,6 +27,7 @@ function UserExerciseList() {
             {selectedPlan.exercises.map((exercise, index) => (
               <li key={index}>
                 <h3>Nome: {exercise.name}</h3>
+                <img src={exercise.gifUrl} alt="" />
                 {/* Renderize outras informações do exercício */}
               </li>
             ))}

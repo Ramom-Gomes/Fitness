@@ -104,6 +104,7 @@ function BodyPartList() {
               <li key={index}>
                 <h3>Nome: {exercise.name}</h3>
                 <p>ID: {exercise.id}</p>
+                <img src={exercise.gifUrl} alt="" />
                 <button onClick={() => handleAddExercise(exercise)}>Adicionar</button>
               </li>
             ))}
