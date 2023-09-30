@@ -46,9 +46,10 @@ function App() {
   return (
     <Provider store={store}>
     <div className="container-app">
-      {!hideHeaderAndMenu && <Menu className="menu" />}
+      <header>
+        {!hideHeaderAndMenu && <Menu className="menu" />}
+      </header>
       <div className="routes">
-        {!hideHeaderAndMenu && <Header className="header" />}
         <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser} />
       </div>
     </div>

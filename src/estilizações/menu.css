@@ -1,5 +1,9 @@
+/* Estilos para o container do menu */
 .container-menu {
-    background-color: black;
-    padding: 10px;
-    color: white;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 8vh;
 }

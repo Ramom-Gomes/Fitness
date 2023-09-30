@@ -4,23 +4,12 @@
     box-sizing: border-box;
 }
 
-.container-app{
-    display: flex;
-  }
+.container-app {
+  display: flex;
+  flex-direction: column;
+}
   
-  .header {
-    
-  }
-  
-  /* Estilos para o menu */
-  .menu {
-    background-color: black;
-    padding: 10px;
-  }
-  
-  /* Estilos para as rotas */
-  .routes {
+.routes {
     flex: 1;
     overflow-y: auto;
-  }
-  
+}

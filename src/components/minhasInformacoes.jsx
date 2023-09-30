@@ -51,7 +51,7 @@ function AtualizarUsuario() {
         <button onClick={() => setEditMode(true)}>Editar</button>
       )}
 
-      <button onClick={() => navigate('/bemvindo')}>Voltar</button>
+      <button onClick={() => navigate('/Home')}>Voltar</button>
     </div>
   );
 }

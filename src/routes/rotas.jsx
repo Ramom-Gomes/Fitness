@@ -12,11 +12,11 @@ const Rotas = ({ users , registerUser, addExerciseToUser }) => (
   <Routes>
     <Route path="/" element={<LoginPage users={users} />} />
     <Route path="/registro" element={<RegisterPage users={users} registerUser={registerUser} />} />
-    <Route path='/bemvindo' element={<BemVindo/>}/>
+    <Route path='/Home' element={<BemVindo/>}/>
     <Route path="/trocar-senha" element={<TrocarSenha users={users} />} />
-    <Route path="/atualizar-usuario" element={<AtualizarUsuario />} />
+    <Route path="/informacoes" element={<AtualizarUsuario />} />
     <Route path="/exercise-list" element={<ExerciseList users={users} addExerciseToUser={addExerciseToUser}/>} />
-    <Route path="/meus-exercicios" element={<UserExerciseList />} />
+    <Route path="/meus-planos" element={<UserExerciseList />} />
   </Routes>
 );
 
