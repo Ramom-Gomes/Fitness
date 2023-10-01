@@ -28,7 +28,7 @@
 }
 
 .container-exercise-list {
-  background-color: aqua;
+
   margin: auto;
   max-width: 1300px;
 }
@@ -36,5 +36,37 @@
 .section-titulo-partes {
   display: flex;
   margin-top: 20px;
-  margin-left: 15px;
+}
+
+.titulo-exercise-list {
+  margin-right: 20px;
+}
+
+.select-exercise-list {
+  height: 30px;
+  margin-top: 7px;
+}
+
+.parteDoCorpo {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.listaDosExercicios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.exercicios {
+  display: flex;
+}
+
+.exerciciosNumero, .exerciciosNome, .exerciciosEquipamento
+, .exerciciosAlvo {
+  margin-bottom: 20px;
+}
+
+.exerciciosImagem {
+  width: 250px;
 }

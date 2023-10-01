@@ -86,13 +86,14 @@ function BodyPartList() {
   return (
     <div className='container-exercise-list'>
       <div className='section-titulo-partes'>
-        <h1>Lista de Exercícios por Parte do Corpo:</h1>
+        <h1 className='titulo-exercise-list'>Lista de Exercícios por Parte do Corpo:</h1>
         <select
+          className='select-exercise-list'
           value={selectedBodyPart}
           onChange={(e) => setSelectedBodyPart(e.target.value)}
         >
           {bodyParts.map((part, index) => (
-            <option key={index} value={part}>
+            <option className='opcoes-exercise-list' key={index} value={part}>
               {part}
             </option>
           ))}
@@ -100,15 +101,19 @@ function BodyPartList() {
       </div>
 
       {exerciseData[selectedBodyPart] && (
-        <div>
-          <h2>{selectedBodyPart}:</h2>
-          <ul>
+        <div className='exercise-list'>
+          <h2 className='parteDoCorpo'>{selectedBodyPart}:</h2>
+          <ul className='listaDosExercicios'>
             {exerciseData[selectedBodyPart].map((exercise, index) => (
-              <li key={index}>
-                <h3>Nome: {exercise.name}</h3>
-                <p>ID: {exercise.id}</p>
-                <img src={exercise.gifUrl} alt="" />
-                <button onClick={() => handleAddExercise(exercise)}>Adicionar</button>
+              <li className='exercicios' key={index}>
+                <div>
+                  <p className='exerciciosNumero'>Número: {exercise.id}</p>
+                  <h3 className='exerciciosNome'>Nome: {exercise.name}</h3>
+                  <p className='exerciciosEquipamento'>Equipamento: {exercise.equipment}</p>
+                  <p className='exerciciosAlvo'>Músculo alvo: {exercise.target}</p>
+                  <button className='exerciciosBotao' onClick={() => handleAddExercise(exercise)}>Adicionar</button>
+                </div>
+                <img className='exerciciosImagem' src={exercise.gifUrl} alt="" />
               </li>
             ))}
           </ul>
