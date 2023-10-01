@@ -44,7 +44,7 @@
   width: 200px;
 }
 
-.email-error, .senha-error {
+.email-error-login, .senha-error-login {
   visibility: hidden;
   color: red;
   position: absolute;
@@ -52,7 +52,7 @@
   margin-right: 30px;
 }
 
-.senha-error {
+.senha-error-login {
   bottom: 140px;
   margin-right: 80px;
 }
@@ -63,8 +63,8 @@
     50% { transform: translateX(5px); }
 }
 
-.email-error.show,
-.senha-error.show {
+.email-error-login.show,
+.senha-error-login.show {
   visibility: visible;
   animation: shake 0.5s ease forwards;
 }
@@ -87,7 +87,7 @@
     border: none;
 }
 
-.links {
+.links-login {
     display: flex;
     margin-top: 40px;
 }
