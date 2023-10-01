@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './style.css'; // Importe o arquivo de estilo
+import './exercicios.css'; // Importe o arquivo de estilo
 
 function AddExerciseScreen({ exercise, onClose }) {
   const [creatingPlan, setCreatingPlan] = useState(false);

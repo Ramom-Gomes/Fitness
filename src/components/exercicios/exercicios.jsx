@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AddExerciseScreen from './addExercicios';
+import './exercicios.css';
 
 function BodyPartList() {
   const [bodyParts, setBodyParts] = useState([
@@ -83,22 +84,24 @@ function BodyPartList() {
   }, [selectedBodyPart]);
 
   return (
-    <div>
-      <h1>Lista de Exercícios por Parte do Corpo</h1>
-      <select
-        value={selectedBodyPart}
-        onChange={(e) => setSelectedBodyPart(e.target.value)}
-      >
-        {bodyParts.map((part, index) => (
-          <option key={index} value={part}>
-            {part}
-          </option>
-        ))}
-      </select>
+    <div className='container-exercise-list'>
+      <div className='section-titulo-partes'>
+        <h1>Lista de Exercícios por Parte do Corpo:</h1>
+        <select
+          value={selectedBodyPart}
+          onChange={(e) => setSelectedBodyPart(e.target.value)}
+        >
+          {bodyParts.map((part, index) => (
+            <option key={index} value={part}>
+              {part}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {exerciseData[selectedBodyPart] && (
         <div>
-          <h2>{selectedBodyPart}</h2>
+          <h2>{selectedBodyPart}:</h2>
           <ul>
             {exerciseData[selectedBodyPart].map((exercise, index) => (
               <li key={index}>
