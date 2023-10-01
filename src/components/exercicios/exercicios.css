@@ -27,6 +27,18 @@
   cursor: pointer;
 }
 
+.adicionar-titulo, .adicionar-nome, .meusPlanos-titulo {
+  margin-bottom: 10px;
+}
+
+.criarPlano {
+  margin-bottom: 10px;
+}
+
+.planosExistentes {
+  margin-right: 10px;
+}
+
 .container-exercise-list {
 
   margin: auto;

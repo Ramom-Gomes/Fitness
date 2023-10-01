@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './exercicios.css'; // Importe o arquivo de estilo
+import './exercicios.css';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 function AddExerciseScreen({ exercise, onClose }) {
   const [creatingPlan, setCreatingPlan] = useState(false);
@@ -52,24 +53,23 @@ function AddExerciseScreen({ exercise, onClose }) {
   return (
     <div className="modal">
       <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          X
-        </button>
-        <h2>Adicionar Exercício</h2>
-        <p>Nome do Exercício: {exercise.name}</p>
+        <AiOutlineCloseCircle onClick={onClose} size={25} className='modal-close'/>
+        <h2 className='adicionar-titulo'>Adicione o exercício</h2>
+        <p className='adicionar-nome'>Nome do Exercício: {exercise.name}</p>
         {/* Outros campos para adicionar informações do exercício */}
 
         {!creatingPlan ? (
           <div>
-            <button onClick={handleCreatePlan}>Criar meu Plano</button>
+            <button className='criarPlano' onClick={handleCreatePlan}>Criar meu Plano</button>
 
             {/* Exibir planos existentes como botões */}
             {existingPlans.length > 0 && (
               <div>
-                <h3>Meus Planos Existentes:</h3>
+                <h3 className='meusPlanos-titulo'>Meus Planos:</h3>
                 <ul>
                   {existingPlans.map((plan, index) => (
                     <button
+                      className='planosExistentes'
                       key={index}
                       onClick={() => {
                         // Verifique se o exercício já está no plano
