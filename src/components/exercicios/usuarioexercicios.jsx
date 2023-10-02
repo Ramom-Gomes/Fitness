@@ -17,12 +17,12 @@ function UserExerciseList() {
   };
 
   return (
-    <div>
-      <h1>Exercícios Adicionados</h1>
+    <div className='container-meusPlanos'>
+      <h1 className='meusPlanosTitulo'>Meus planos:</h1>
       {selectedPlan ? (
-        <div>
-          <button onClick={goBack}>Voltar para a lista de planos</button>
-          <h2>Exercícios no Plano: {selectedPlan.name}</h2>
+        <div className='meusPlanosLista'>
+          <button className='MeusPlanosBotaoVoltarList' onClick={goBack}>Voltar para a lista de planos</button>
+          <h2 className='MeusPlanosPlano'>Exercícios no Plano: {selectedPlan.name}</h2>
           <ul>
             {selectedPlan.exercises.map((exercise, index) => (
               <li key={index}>
@@ -34,11 +34,11 @@ function UserExerciseList() {
           </ul>
         </div>
       ) : (
-        <ul>
+        <ul className='meus-planos'>
           {currentUser && currentUser.planos ? (
             currentUser.planos.map((plan, index) => (
               <li key={index}>
-                <button onClick={() => selectPlan(plan)}>{plan.name}</button>
+                <button className='planos-existentes' onClick={() => selectPlan(plan)}>{plan.name}</button>
               </li>
             ))
           ) : (
