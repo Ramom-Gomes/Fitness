@@ -23,12 +23,16 @@ function UserExerciseList() {
         <div className='meusPlanosLista'>
           <button className='MeusPlanosBotaoVoltarList' onClick={goBack}>Voltar para a lista de planos</button>
           <h2 className='MeusPlanosPlano'>Exercícios no Plano: {selectedPlan.name}</h2>
-          <ul>
+          <ul className='listaDosExercicios'>
             {selectedPlan.exercises.map((exercise, index) => (
-              <li key={index}>
-                <h3>Nome: {exercise.name}</h3>
-                <img src={exercise.gifUrl} alt="" />
-                {/* Renderize outras informações do exercício */}
+              <li className='exercicios' key={index}>
+                <div>
+                  <p className='exerciciosNumero'>Número: {exercise.id}</p>
+                  <h3 className='exerciciosNome'>Nome: {exercise.name}</h3>
+                  <p className='exerciciosEquipamento'>Equipamento: {exercise.equipment}</p>
+                  <p className='exerciciosAlvo'>Músculo alvo: {exercise.target}</p>
+                </div>
+                <img className='exerciciosImagem' src={exercise.gifUrl} alt="" />
               </li>
             ))}
           </ul>
