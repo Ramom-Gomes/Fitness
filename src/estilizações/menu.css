@@ -1,7 +1,7 @@
 /* Estilos para o container do menu */
 .container-menu {
-  background-color: #333;
-  color: white;
+  background-color: #000;
+  color: #eee;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -19,7 +19,7 @@
 .links {
   margin: auto;
   margin-left: 32px;
-  color: white;
+  color: #eee;
   letter-spacing: 3px;
   text-decoration: none;
 }

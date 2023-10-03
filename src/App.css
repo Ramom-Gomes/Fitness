@@ -7,6 +7,9 @@
 .container-app {
   display: flex;
   flex-direction: column;
+  background: url("./images/Academia.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
 }
   
 .routes {
