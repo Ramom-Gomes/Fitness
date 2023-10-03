@@ -95,7 +95,7 @@
 .meusPlanosTitulo {
   margin-left: 10px;
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .meusPlanosLista {
@@ -110,6 +110,16 @@
   margin-bottom: 10px;
 }
 
+.MeusPlanosBotaoVoltarList {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
 .planos-existentes {
   background-color: #333;
   color: white;
@@ -121,6 +131,6 @@
   margin-left: 10px;
 }
 
-.planos-existentes:hover {
+.planos-existentes:hover, .MeusPlanosBotaoVoltarList:hover {
   background-color: #ff5555;
 }
