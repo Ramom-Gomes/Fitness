@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
-import '../estilizações/registro.css';
+import '../estilizações/registro.css'; 
 
 function RegisterPage({ registerUser, users }) {
   const navigate = useNavigate();
@@ -101,7 +101,7 @@ function RegisterPage({ registerUser, users }) {
           frequenciaTreino: "",
         });
         setConfirmPassword("");
-        navigate('/bemvindo');
+        navigate('/Home');
       }
     }
 
@@ -111,7 +111,7 @@ function RegisterPage({ registerUser, users }) {
   return (
     <div className={'container'}>
       <div className={'main'}> 
-        <h2>Registro - Etapa {currentStep}</h2>
+        <h2 className="registro-titulo">Registro - Etapa {currentStep}</h2>
         {currentStep === 1 && (
           <>
             <div className={'mensagem-container'}>

@@ -16,8 +16,13 @@
     position: relative;
 } 
 
+.registro-titulo {
+  color: #eee;
+}
+
 .mensagem-motivacional {
   font-size: 19px;
+  color: #CF0A0A;
 }
 
 .mensagem-container {
@@ -32,10 +37,19 @@
 .input-chave {
   margin-top: 40px;
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #eee;
   background-color: transparent;
   outline: none;
   width: 200px;
+  color: #eee;
+}
+
+.input-senha:focus, .input-confirmarSenha:focus, .input-nome:focus,
+.input-email:focus,.input-idade:focus, .input-peso:focus, 
+.input-altura:focus, .input-sexo:focus, .input-objetivo:focus, 
+.input-condicionamento:focus, .input-frequencia:focus,
+.input-chave:focus {
+  border-bottom: 2px solid #CF0A0A;
 }
 
 .botao-registro {
@@ -45,6 +59,12 @@
   border-radius: 10px;
   font-size: 15px;
   border: none;
+  transition: background-color 0.3s ease;
+}
+
+.botao-registro:hover {
+  background-color: #CF0A0A;
+  color: black;
 }
 
 .email-error, .senha-error, .confirmarSenha-error, .nome-error,
