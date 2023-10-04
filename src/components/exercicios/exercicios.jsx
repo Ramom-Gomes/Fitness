@@ -20,6 +20,8 @@ function BodyPartList() {
   const [exerciseData, setExerciseData] = useState({});
   const [showAddExerciseScreen, setShowAddExerciseScreen] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const exercisesPerPage = 20; // Define o número de exercícios por página
 
   // Usamos o localStorage para armazenar em cache os dados das partes do corpo
   const [cache, setCache] = useState(
@@ -36,12 +38,26 @@ function BodyPartList() {
     setSelectedExercise(null);
   };
 
-  const loadExercisesByBodyPart = async (bodyPart) => {
+  const loadExercisesByBodyPart = async (bodyPart, page) => {
+    // Calcule o índice de início com base na página atual
+    const startIndex = (page - 1) * exercisesPerPage;
+    // Calcule o índice de fim com base na página atual
+    const endIndex = startIndex + exercisesPerPage;
+
+    // Limpe o cache ao trocar de grupo muscular e redefina a página para 1
+    if (selectedBodyPart !== bodyPart) {
+      setCache((prevCache) => ({
+        ...prevCache,
+        [selectedBodyPart]: null,
+      }));
+      setCurrentPage(1);
+    }
+
     // Verifique se os dados para a parte do corpo já estão em cache
     if (cache[bodyPart]) {
       setExerciseData((prevData) => ({
         ...prevData,
-        [bodyPart]: cache[bodyPart],
+        [bodyPart]: cache[bodyPart].slice(startIndex, endIndex), // Retorna apenas os exercícios da página atual
       }));
       return;
     }
@@ -64,9 +80,10 @@ function BodyPartList() {
           ...prevCache,
           [bodyPart]: result,
         }));
+        // Atualize o estado com os exercícios da página atual
         setExerciseData((prevData) => ({
           ...prevData,
-          [bodyPart]: result,
+          [bodyPart]: result.slice(startIndex, endIndex), // Retorna apenas os exercícios da página atual
         }));
 
         // Atualize o localStorage com os dados em cache
@@ -80,8 +97,8 @@ function BodyPartList() {
   };
 
   useEffect(() => {
-    loadExercisesByBodyPart(selectedBodyPart);
-  }, [selectedBodyPart]);
+    loadExercisesByBodyPart(selectedBodyPart, currentPage);
+  }, [selectedBodyPart, currentPage]);
 
   return (
     <div className='container-exercise-list'>
@@ -119,6 +136,32 @@ function BodyPartList() {
           </ul>
         </div>
       )}
+
+      <div className='pagination-buttons'>
+        <button
+          onClick={() => {
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1);
+            }
+          }}
+          disabled={currentPage === 1} // Desabilita se estiver na primeira página
+        >
+          Anterior
+        </button>
+        <button
+          onClick={() => {
+            if (exerciseData[selectedBodyPart]?.length === exercisesPerPage) {
+              setCurrentPage(currentPage + 1);
+            }
+          }}
+          disabled={
+            !exerciseData[selectedBodyPart] || exerciseData[selectedBodyPart]?.length < exercisesPerPage
+          } // Desabilita se não houver mais exercícios
+        >
+          Próximo
+        </button>
+      </div>
+
       {showAddExerciseScreen && (
         <AddExerciseScreen
           exercise={selectedExercise}
