@@ -134,3 +134,63 @@
 .planos-existentes:hover, .MeusPlanosBotaoVoltarList:hover {
   background-color: #ff5555;
 }
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pagination-buttons-baixo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.botao-proximo, .botao-voltar {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.botao-proximo:hover, .botao-voltar:hover {
+  background-color: #ff5555;
+}
+
+.botao-proximo:disabled, .botao-voltar:disabled {
+  background-color: desaturar(corPrincipal, 30%); /* Desatura a cor principal em 30% */
+  color: #555;
+  cursor: not-allowed;
+}
+
+.botao-proximo:disabled:hover, .botao-voltar:disabled:hover {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+.botao-proximo {
+  margin-left: 15px;
+}
+
+.botao-voltar {
+  margin-right: 15px;
+}
+
+.exerciciosBotao {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.exerciciosBotao:hover {
+  background-color: #ff5555;
+}

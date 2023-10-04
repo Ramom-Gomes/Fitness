@@ -120,6 +120,32 @@ function BodyPartList() {
       {exerciseData[selectedBodyPart] && (
         <div className='exercise-list'>
           <h2 className='parteDoCorpo'>{selectedBodyPart}:</h2>
+          <div className='pagination-buttons'>
+        <button
+          className='botao-voltar'
+          onClick={() => {
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1);
+            }
+          }}
+          disabled={currentPage === 1} // Desabilita se estiver na primeira página
+        >
+          Anterior
+        </button>
+        <button
+          className='botao-proximo'
+          onClick={() => {
+            if (exerciseData[selectedBodyPart]?.length === exercisesPerPage) {
+              setCurrentPage(currentPage + 1);
+            }
+          }}
+          disabled={
+            !exerciseData[selectedBodyPart] || exerciseData[selectedBodyPart]?.length < exercisesPerPage
+          } // Desabilita se não houver mais exercícios
+        >
+          Próximo
+        </button>
+      </div>
           <ul className='listaDosExercicios'>
             {exerciseData[selectedBodyPart].map((exercise, index) => (
               <li className='exercicios' key={index}>
@@ -137,8 +163,9 @@ function BodyPartList() {
         </div>
       )}
 
-      <div className='pagination-buttons'>
+      <div className='pagination-buttons-baixo'>
         <button
+          className='botao-voltar'
           onClick={() => {
             if (currentPage > 1) {
               setCurrentPage(currentPage - 1);
@@ -149,6 +176,7 @@ function BodyPartList() {
           Anterior
         </button>
         <button
+          className='botao-proximo'
           onClick={() => {
             if (exerciseData[selectedBodyPart]?.length === exercisesPerPage) {
               setCurrentPage(currentPage + 1);
