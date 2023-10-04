@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import '../estilizações/trocarSenha.css'; 
 
 function TrocarSenha({ users }) {
   const navigate = useNavigate();
@@ -62,41 +63,47 @@ function TrocarSenha({ users }) {
   };
 
   return (
-    <div>
-      <h2>Trocar Senha</h2>
-      <input
-        type="email"
-        placeholder="E-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-      
-      <input
-        type="password"
-        placeholder="Nova Senha"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-      {errors.newPassword && <p style={{ color: 'red' }}>{errors.newPassword}</p>}
-      
-      <input
-        type="password"
-        placeholder="Confirmar Nova Senha"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword}</p>}
-      
-      <input
-        type="text"
-        placeholder="Palavra-chave"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      {errors.keyword && <p style={{ color: 'red' }}>{errors.keyword}</p>}
-      
-      <button onClick={handlePasswordChange}>Trocar Senha</button>
+    <div className='container'>
+      <div className='main'>
+        <h2>Trocar Senha</h2>
+        <input
+          className='campo-email'
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {errors.email && <p className={`email-error ${errors.email ? 'show' : ''}`} style={{ color: 'red' }}>{errors.email}</p>}
+        
+        <input
+          className='campo-senha'
+          type="password"
+          placeholder="Nova Senha"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        {errors.newPassword && <p className={`senha-error ${errors.newPassword ? 'show' : ''}`}>{errors.newPassword}</p>}
+        
+        <input
+          className='input-confirmarSenha'
+          type="password"
+          placeholder="Confirmar Nova Senha"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        {errors.confirmPassword && <p className={`confirmarSenha-error ${errors.confirmPassword ? 'show' : ''}`}>{errors.confirmPassword}</p>}
+        
+        <input
+          className='input-chave'
+          type="text"
+          placeholder="Palavra-chave"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+        {errors.keyword && <p className={`chave-error ${errors.keyword ? 'show' : ''}`}>{errors.keyword}</p>}
+        
+        <button className='botao-registro' onClick={handlePasswordChange}>Trocar Senha</button>
+      </div>
     </div>
   );
 }
