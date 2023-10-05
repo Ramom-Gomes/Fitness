@@ -123,7 +123,7 @@ function RegisterPage({ registerUser, users }) {
               className={'input-email'}
               type="email"
               placeholder="E-mail"
-              value={newUser.email}
+              value={newUser.email} 
               onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
             />
             {errors.email && <p className={`email-error ${errors.email ? 'show' : ''}`}>{errors.email}</p>}

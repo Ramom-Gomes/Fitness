@@ -33,7 +33,7 @@ function LoginPage({ users, theme }) {
       setErrorUser("");
     } else {
       localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
-      navigate(`/bemvindo`); // Navegar para a página de boas-vindas
+      navigate(`/Home`); // Navegar para a página de boas-vindas
     }
   };
 

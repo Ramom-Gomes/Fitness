@@ -32,7 +32,7 @@ function TrocarSenha({ users }) {
       const userIndex = users.findIndex(user => user.email === email);
 
       if (userIndex === -1) {
-        newErrors.email = 'Usuário não encontrado.';
+        newErrors.email = 'E-mail errado.';
       } else if (users[userIndex].palavraChave !== keyword) {
         newErrors.keyword = 'Palavra chave incorreta.';
       } else if (newPassword !== confirmPassword) {
@@ -55,7 +55,7 @@ function TrocarSenha({ users }) {
         localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
 
         // Redirecionar para a página de boas-vindas
-        navigate('/bemvindo');
+        navigate('/Home');
       }
     }
 
