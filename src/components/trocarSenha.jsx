@@ -67,22 +67,22 @@ function TrocarSenha({ users }) {
       <div className='main'>
         <h2>Trocar Senha</h2>
         <input
-          className='campo-email'
+          className='input-email'
           type="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <p className={`email-error ${errors.email ? 'show' : ''}`} style={{ color: 'red' }}>{errors.email}</p>}
+        {errors.email && <p className={`email-error-novaSenha ${errors.email ? 'show' : ''}`}>{errors.email}</p>}
         
         <input
-          className='campo-senha'
+          className='input-senha'
           type="password"
           placeholder="Nova Senha"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
-        {errors.newPassword && <p className={`senha-error ${errors.newPassword ? 'show' : ''}`}>{errors.newPassword}</p>}
+        {errors.newPassword && <p className={`senha-error-novaSenha ${errors.newPassword ? 'show' : ''}`}>{errors.newPassword}</p>}
         
         <input
           className='input-confirmarSenha'

@@ -1,3 +1,20 @@
-.email-error-trocar {
-    bottom: 100px;
+.email-error-novaSenha {
+    visibility: hidden;
+  color: red;
+  position: absolute;
+  bottom: 250px;
+  margin-right: 85px;
+}
+
+.senha-error-novaSenha {
+    visibility: hidden;
+  color: red;
+  position: absolute;
+  bottom: 193px;
+  margin-right: 55px;
+}
+
+.email-error-novaSenha.show, .senha-error-novaSenha.show {
+    visibility: visible;
+    animation: shake 0.5s ease forwards;
 }
