@@ -6,6 +6,11 @@
   margin-right: 85px;
 }
 
+.titulo-trocarSenha {
+  font-size: 25px;
+  color: #CF0A0A;
+}
+
 .senha-error-novaSenha {
     visibility: hidden;
   color: red;

@@ -65,7 +65,7 @@ function TrocarSenha({ users }) {
   return (
     <div className='container'>
       <div className='main'>
-        <h2>Trocar Senha</h2>
+        <h2 className='titulo-trocarSenha'>Trocar Senha</h2>
         <input
           className='input-email'
           type="email"
