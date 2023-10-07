@@ -7,12 +7,12 @@ function Menu() {
 
   return (
     <div className="container-menu">
-      <h1>Fitnes</h1>
+      <h1 className='menuTitulo'>Fitnes</h1>
       <nav className='nav-list'>
         <Link className='links' to="/Home">Home</Link>
         <Link className='links' to="/exercise-list">Exercícios</Link>
         <Link className='links' to="meus-planos">Meus planos</Link>
-        <Link className='link-user' to="/informacoes"><BiUserCircle size={30} color='black'/></Link>
+        <Link className='link-user' to="/informacoes"><BiUserCircle size={30}/></Link>
       </nav>
     </div>
   );

@@ -1,7 +1,6 @@
 /* Estilos para o container do menu */
 .container-menu {
   background-color: transparent;
-  color: #000;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -10,6 +9,14 @@
   BlinkMacSystemFont, 'Segoe UI', 
   Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 
   'Helvetica Neue', sans-serif;
+}
+
+.menuTitulo {
+  color: #000;
+}
+
+.menuTitulo:hover, .links:hover, .link-user:hover {
+  color: #FFF;
 }
 
 .nav-list {
@@ -31,4 +38,5 @@
 .link-user {
   margin: auto;
   margin-left: 100px;
+  color: black;
 }
