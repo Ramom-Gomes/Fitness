@@ -12,7 +12,7 @@ function Menu() {
         <Link className='links' to="/Home">Home</Link>
         <Link className='links' to="/exercise-list">Exercícios</Link>
         <Link className='links' to="meus-planos">Meus planos</Link>
-        <Link className='link-user' to="/informacoes"><BiUserCircle size={30} color='white'/></Link>
+        <Link className='link-user' to="/informacoes"><BiUserCircle size={30} color='black'/></Link>
       </nav>
     </div>
   );
