@@ -79,7 +79,8 @@
 
 .exerciciosImagem {
   width: 250px;
-  mix-blend-mode: multiply;
+  border-radius: 30px;
+  opacity: 0.5;
 }
 
 .container-meusPlanos {
