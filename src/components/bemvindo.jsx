@@ -9,13 +9,6 @@ function BemVindo() {
 
   const [userData, setUserData] = useState({
     nome: "",
-    idade: "",
-    peso: "",
-    altura: "",
-    sexo: "",
-    objetivo: "",
-    nivelCondicionamento: "",
-    frequenciaTreino: "",
   });
 
   useEffect(() => {
@@ -23,13 +16,6 @@ function BemVindo() {
     if (currentUser) {
       setUserData({
         nome: currentUser.nome,
-        idade: currentUser.idade,
-        peso: currentUser.peso,
-        altura: currentUser.altura,
-        sexo: currentUser.sexo,
-        objetivo: currentUser.objetivo,
-        nivelCondicionamento: currentUser.nivelCondicionamento,
-        frequenciaTreino: currentUser.frequenciaTreino,
       });
     }
   }, []);
