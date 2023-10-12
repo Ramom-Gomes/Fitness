@@ -195,3 +195,17 @@
 .exerciciosBotao:hover {
   background-color: #ff5555;
 }
+
+.semPlanos {
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.linkPlano {
+  color: #CF0A0A;
+  text-decoration: none;
+}
+
+.linkPlano:hover {
+  text-decoration: underline;
+}

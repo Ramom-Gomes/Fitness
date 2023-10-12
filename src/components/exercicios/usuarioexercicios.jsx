@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function UserExerciseList() {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -46,7 +47,10 @@ function UserExerciseList() {
               </li>
             ))
           ) : (
-            <p>Nenhum plano adicionado ainda.</p>
+            <p className='semPlanos'>Nenhum plano criado ainda,
+              visualize nossos <Link className='linkPlano' to="/exercise-list">exercícios</Link> e 
+              crie um plano personalizado para você.
+            </p>
           )}
         </ul>
       )}
