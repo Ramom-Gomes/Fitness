@@ -55,6 +55,9 @@
 .select-exercise-list {
   height: 30px;
   margin-top: 7px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
 }
 
 .parteDoCorpo {
