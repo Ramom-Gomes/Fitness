@@ -34,7 +34,7 @@ function RegisterPage({ registerUser, users }) {
       if (!newUser.email || !validator.isEmail(newUser.email)) {
         newErrors.email = "Digite um e-mail válido.";
       }
-      if (!newUser.password || newUser.password.length < 8) {
+      if (!newUser.password || newUser.password.length < 1) {
         newErrors.password = "A senha deve ter pelo menos 8 caracteres.";
       }
       if (!confirmPassword || newUser.password !== confirmPassword) {
