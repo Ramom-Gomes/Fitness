@@ -44,6 +44,18 @@ function AddExerciseScreen({ exercise, onClose }) {
     // Atualize o usuário no localStorage
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
+    const users = JSON.parse(localStorage.getItem('users'));
+
+    const userWithEmail = users.find((user) => user.email === currentUser.email);
+
+    if (userWithEmail) {
+      // Atualize os planos do usuário com os planos do `currentUser`
+      userWithEmail.planos = currentUser.planos;
+    }
+
+    localStorage.setItem('users', JSON.stringify(users));
+
+
     // Após a conclusão, redefina o estado
     setCreatingPlan(false);
     setNewPlanName('');

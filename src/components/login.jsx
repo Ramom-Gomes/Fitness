@@ -32,7 +32,11 @@ function LoginPage({ users, theme }) {
       setErrorPassword("Senha incorreta.");
       setErrorUser("");
     } else {
-      localStorage.setItem('currentUser', JSON.stringify(user)); // Armazena o usuário logado no localStorage
+      const currentUser = {
+        ...user,
+        planos: user.planos
+      };
+      localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Armazena o usuário logado no localStorage
       navigate(`/Home`); // Navegar para a página de boas-vindas
     }
   };

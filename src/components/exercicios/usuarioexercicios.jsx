@@ -6,6 +6,13 @@ function UserExerciseList() {
 
   // Obtém o usuário logado do localStorage
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const users = JSON.parse(localStorage.getItem('users'));
+
+  // Encontre o usuário atual com base no email
+  const loggedInUser = users.find((user) => user.email === currentUser.email);
+
+  // Obtenha os planos do usuário atual
+  const userPlans = loggedInUser ? loggedInUser.planos : [];
 
   // Função para selecionar um plano
   const selectPlan = (plan) => {
@@ -40,8 +47,8 @@ function UserExerciseList() {
         </div>
       ) : (
         <ul className='meus-planos'>
-          {currentUser && currentUser.planos ? (
-            currentUser.planos.map((plan, index) => (
+          {userPlans && userPlans.length > 0 ? (
+            userPlans.map((plan, index) => (
               <li key={index}>
                 <button className='planos-existentes' onClick={() => selectPlan(plan)}>{plan.name}</button>
               </li>
