@@ -1,0 +1,44 @@
+.containerInfo {
+    
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.tituloInfo {
+    margin-bottom: 20px;
+}
+
+.botaoPosicaoInfo {
+    display: flex;
+}
+
+.botaoInfo, .botaoInfoVoltar {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 150px;
+}
+
+.inputInfo {
+  background-color: #333;
+  color: #fff;
+}
+
+.Atualizar { 
+  margin-right: 10px;
+}
+
+.botaoInfo:hover, .botaoInfoVoltar:hover {
+  background-color: #ff5555;
+  color: #000;
+}
+
+.botaoInfoVoltar {
+    margin-top: 20px;
+}
