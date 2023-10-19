@@ -21,7 +21,9 @@ function UserExerciseList() {
   return (
     <div className='container-meusPlanos'>
       <h1 className='meusPlanosTitulo'>Meus planos:</h1>
-      {selectedPlan ? (
+      {Object.keys(userPlansForEmail).length === 0 ? (
+        <p className='semPlanos'>Nenhum plano criado ainda, visualize nossos <Link className='linkPlano' to="/exercise-list">exercícios</Link> e crie um plano personalizado para você. </p>
+      ) : selectedPlan ? (
         <div className='meusPlanosLista'>
           <button className='MeusPlanosBotaoVoltarList' onClick={goBack}>Voltar para a lista de planos</button>
           <h2 className='MeusPlanosPlano'>Exercícios no Plano: {selectedPlan.name}</h2>
