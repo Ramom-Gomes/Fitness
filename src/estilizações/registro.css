@@ -16,19 +16,31 @@
     position: relative;
 } 
 
-.registro-titulo {
+.voltarEtapa {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #CF0A0A;
+  cursor: pointer;
+}
+
+.voltarEtapa:hover {
   color: #eee;
 }
 
-.mensagem-motivacional {
-  font-size: 19px;
-  color: #CF0A0A;
+.registro-titulo {
+  color: #eee;
 }
 
 .mensagem-container {
   max-width: 400px;
   margin-top: 25px;
   line-height: 23px;
+}
+
+.mensagem-motivacional {
+  font-size: 19px;
+  color: #CF0A0A;
 }
 
 .input-senha, .input-confirmarSenha, .input-nome, .input-email,

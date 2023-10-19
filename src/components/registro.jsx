@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
 import '../estilizações/registro.css'; 
+import { BsArrowLeft } from 'react-icons/bs';
 
 function RegisterPage({ registerUser, users }) {
   const navigate = useNavigate();
@@ -108,9 +109,20 @@ function RegisterPage({ registerUser, users }) {
     setErrors(newErrors);
   };
 
+  const voltarEtapa = () => {
+    if (currentStep === 1) {
+      navigate(-1);
+    } else if (currentStep === 2) {
+      setCurrentStep(1); 
+    } else if (currentStep === 3) {
+      setCurrentStep(2); 
+    }
+  };
+
   return (
     <div className={'container'}>
-      <div className={'main'}> 
+      <div className={'main'}>
+        <BsArrowLeft size={25} className="voltarEtapa" onClick={voltarEtapa}/>
         <h2 className="registro-titulo">Registro - Etapa {currentStep}</h2>
         {currentStep === 1 && (
           <>
