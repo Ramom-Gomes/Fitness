@@ -12,8 +12,13 @@ function App() {
   const location = useLocation(); 
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-    setUsers(storedUsers);
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+    if (storedUsers === undefined) {
+      localStorage.clear();
+      setUsers([]);
+    } else {
+      setUsers(storedUsers);
+    }
   }, []);
 
   useEffect(() => {
