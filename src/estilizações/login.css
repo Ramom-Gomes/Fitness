@@ -115,17 +115,3 @@
 .link-criarLogin:hover, .link-redefinirSenha:hover {
   color: #eee;
 }
-
-@media (max-width:500px) {
-  .container {
-    min-height: 0;
-  }
-
-  .container-light {
-    min-height: 0;
-  }
-
-  .main {
-    height: 100%;
-  }
-}
