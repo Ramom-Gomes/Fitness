@@ -132,3 +132,23 @@
 visibility: visible;
 animation: shake 0.5s ease forwards;
 }
+
+@media (max-width:400px) {
+  .senha-error {
+    bottom: 178px;
+  }
+}
+
+@media (max-width:300px) {
+  .idade-error {
+    bottom: 234px;
+  }
+
+  .peso-error {
+    bottom: 177px;
+  }
+
+  .altura-error {
+    bottom: 120px;
+  }
+}
