@@ -44,27 +44,3 @@
 .menu-responsivo {
   display: none;
 }
-
-@media (max-width:1400px) {
-  .nav-list {
-    position: absolute;
-    top: 8vh;
-    right: 0;
-    width: 50vw;
-    height: 92vh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-color: aqua;
-    transform: translateX(100%);
-  }
-
-  .links, .link-planos, .link-user {
-    margin: auto;
-    opacity: 0;
-  }
-
-  .menu-responsivo {
-    display: block;
-  }
-}
