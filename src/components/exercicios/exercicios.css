@@ -232,3 +232,19 @@
     margin: auto;
   }
 }
+
+@media (max-width:850px) {
+  .meus-planos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width:510px) {
+  .meus-planos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
