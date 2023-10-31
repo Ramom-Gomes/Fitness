@@ -212,3 +212,23 @@
 .linkPlano:hover {
   text-decoration: underline;
 }
+
+@media (max-width:1156px) {
+  .listaDosExercicios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width:850px) {
+  .listaDosExercicios {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+  }
+
+  .exercicios {
+    margin: auto;
+  }
+}
