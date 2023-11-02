@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import validator from 'validator';
 import { useNavigate } from 'react-router-dom'; 
 import '../estilizações/trocarSenha.css'; 
+import { BsArrowLeft } from 'react-icons/bs';
 
 function TrocarSenha({ users }) {
   const navigate = useNavigate();
@@ -62,9 +63,14 @@ function TrocarSenha({ users }) {
     setErrors(newErrors);
   };
 
+  const voltarEtapa = () => {
+      navigate(-1);
+  };
+
   return (
     <div className='container'>
       <div className='main'>
+        <BsArrowLeft size={25} className="voltarEtapa" onClick={voltarEtapa}/>
         <h2 className='titulo-trocarSenha'>Trocar Senha</h2>
         <input
           className='input-email'
