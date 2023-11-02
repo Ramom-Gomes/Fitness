@@ -76,5 +76,7 @@
 
   .menu-responsivo {
     display: block;
+    position: absolute;
+    margin-left: 220px;
   }
 }

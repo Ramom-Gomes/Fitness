@@ -6,7 +6,7 @@ import { TfiMenu } from 'react-icons/tfi';
 
 function Menu() {
 
-  const [menuAberto, setMenuAberto] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(true);
 
   const trocaMenu = () => {
     setMenuAberto(!menuAberto);
