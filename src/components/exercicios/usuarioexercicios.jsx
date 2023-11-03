@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 function UserExerciseList() {
   const [selectedPlan, setSelectedPlan] = useState(null);
-
+  const [userPlansForEmail, setUserPlansForEmail] = useState({});
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
 
-  const userEmail = currentUser.email;
-  const userPlansForEmail = userPlans[userEmail] || {};
+  useEffect(() => {
+    // Atualize o estado de userPlansForEmail quando o componente montar e sempre que o usuário mudar.
+    const userEmail = currentUser.email;
+    const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
+    setUserPlansForEmail(userPlans[userEmail] || {});
+  }, [currentUser]);
 
   const selectPlan = (plan) => {
     setSelectedPlan(plan);
   };
 
   const goBack = () => {
+    setSelectedPlan(null);
+  };
+
+  const handleDeletePlan = (planName) => {
+    const updatedPlans = { ...userPlansForEmail };
+    delete updatedPlans[planName];
+
+    // Atualize o estado e o armazenamento local após a exclusão
+    const userEmail = currentUser.email;
+    const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
+    userPlans[userEmail] = updatedPlans;
+    localStorage.setItem('planos', JSON.stringify(userPlans));
+    setUserPlansForEmail(updatedPlans);
     setSelectedPlan(null);
   };
 
@@ -46,6 +63,12 @@ function UserExerciseList() {
           {Object.values(userPlansForEmail).map((plan, index) => (
             <li key={index}>
               <button className='planos-existentes' onClick={() => selectPlan(plan)}>{plan.name}</button>
+              <button
+                className='excluir-plano'
+                onClick={() => handleDeletePlan(plan.name)}
+              >
+                Excluir
+              </button>
             </li>
           ))}
         </ul>
