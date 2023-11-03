@@ -43,6 +43,12 @@ function UserExerciseList() {
       ) : selectedPlan ? (
         <div className='meusPlanosLista'>
           <button className='MeusPlanosBotaoVoltarList' onClick={goBack}>Voltar para a lista de planos</button>
+          <button
+            className='excluir-plano'
+            onClick={() => handleDeletePlan(selectedPlan.name)}
+          >
+            Excluir Esse Plano
+          </button>
           <h2 className='MeusPlanosPlano'>Exercícios no Plano: {selectedPlan.name}</h2>
           <ul className='listaDosExercicios'>
             {selectedPlan.exercises.map((exercise, index) => (
@@ -63,12 +69,6 @@ function UserExerciseList() {
           {Object.values(userPlansForEmail).map((plan, index) => (
             <li key={index}>
               <button className='planos-existentes' onClick={() => selectPlan(plan)}>{plan.name}</button>
-              <button
-                className='excluir-plano'
-                onClick={() => handleDeletePlan(plan.name)}
-              >
-                Excluir
-              </button>
             </li>
           ))}
         </ul>

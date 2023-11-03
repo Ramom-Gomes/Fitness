@@ -102,7 +102,7 @@
   margin-bottom: 10px;
 }
 
-.meusPlanosLista {
+.meusPlanosLista, .excluir-plano {
   margin-left: 10px;
 }
 
@@ -114,7 +114,7 @@
   margin-bottom: 10px;
 }
 
-.MeusPlanosBotaoVoltarList {
+.MeusPlanosBotaoVoltarList, .excluir-plano {
   background-color: #333;
   color: white;
   border: none;
@@ -135,7 +135,7 @@
   margin-left: 10px;
 }
 
-.planos-existentes:hover, .MeusPlanosBotaoVoltarList:hover {
+.planos-existentes:hover, .MeusPlanosBotaoVoltarList:hover, .excluir-plano:hover {
   background-color: #ff5555;
 }
 
