@@ -7,6 +7,7 @@ import TrocarSenha from "../components/trocarSenha";
 import AtualizarUsuario from "../components/minhasInformacoes";
 import ExerciseList from '../components/exercicios/exercicios';
 import UserExerciseList from '../components/exercicios/usuarioexercicios';
+import AtualizarUsuarios from '../components/Header';
 
 const Rotas = ({ users , registerUser, addExerciseToUser }) => (
   <Routes>
@@ -17,6 +18,7 @@ const Rotas = ({ users , registerUser, addExerciseToUser }) => (
     <Route path="/informacoes" element={<AtualizarUsuario />} />
     <Route path="/exercise-list" element={<ExerciseList users={users} addExerciseToUser={addExerciseToUser}/>} />
     <Route path="/meus-planos" element={<UserExerciseList />} />
+    <Route path="/teste" element={<AtualizarUsuarios />} />
   </Routes>
 );
 
