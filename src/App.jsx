@@ -9,11 +9,11 @@ import store from './Redux/store';
 
 function App() {
   const [users, setUsers] = useState([]);
-  const location = useLocation(); 
+  const location = useLocation();
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem('users'));
-    if (storedUsers === undefined) {
+    if (storedUsers === undefined || storedUsers === null) {
       localStorage.clear();
       setUsers([]);
     } else {
@@ -32,33 +32,37 @@ function App() {
   const addExerciseToUser = (exercise) => {
     // Clone o objeto de usuário atual
     const updatedUser = { ...currentUser };
-  
+
     // Adicione o exercício à lista de exercícios do usuário
     updatedUser.exercises.push(exercise);
-  
+
     // Atualize o usuário no estado
     setCurrentUser(updatedUser);
-  
+
     // Atualize o localStorage com o novo usuário
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
   };
-  
 
-  const hideHeaderAndMenu = location.pathname === '/' || 
-  location.pathname === '/registro' || 
-  location.pathname === '/trocar-senha';
+  const hideHeaderAndMenu =
+    location.pathname === '/' ||
+    location.pathname === '/registro' ||
+    location.pathname === '/trocar-senha';
 
   return (
     <Provider store={store}>
-    <div className="container-app">
-      <header>
-        {!hideHeaderAndMenu && <Menu className="menu" />}
-      </header>
-      <div className="routes">
-        <Rotas users={users} registerUser={registerUser} addExerciseToUser={addExerciseToUser} />
+      <div className="container-app">
+        <header>
+          {!hideHeaderAndMenu && <Menu className="menu" />}
+        </header>
+        <div className="routes">
+          <Rotas
+            users={users}
+            registerUser={registerUser}
+            addExerciseToUser={addExerciseToUser}
+          />
+        </div>
       </div>
-    </div>
-  </Provider>
+    </Provider>
   );
 }
 

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import '../estilizações/informacoes.css';
 
 function AtualizarUsuario() {
   const navigate = useNavigate();
 
-  // Inicialize o estado com as informações do usuário
-  const [user, setUser] = useState({
+  const [currentUser, setCurrentUser] = useState({
     email: "",
     password: "",
     nome: "",
@@ -23,42 +22,43 @@ function AtualizarUsuario() {
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      setUser(currentUser);
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (storedUser) {
+      setCurrentUser(storedUser);
     }
   }, []);
 
   const handleUpdate = () => {
-    
-    if (user.email === "" || user.password === "" || user.nome === "") {
+    if (currentUser.email === "" || currentUser.password === "" || currentUser.nome === "") {
       alert("Por favor, preencha todos os campos obrigatórios (email, senha, nome).");
       return;
     }
 
-    // Verificar idade, peso e altura
     if (
-      isNaN(user.idade) || 
-      isNaN(user.peso) || 
-      isNaN(user.altura) || 
-      user.idade === "" || 
-      user.peso === "" || 
-      user.altura === ""
+      isNaN(currentUser.idade) || 
+      isNaN(currentUser.peso) || 
+      isNaN(currentUser.altura) || 
+      currentUser.idade === "" || 
+      currentUser.peso === "" || 
+      currentUser.altura === ""
     ) {
       alert("Por favor, insira valores numéricos válidos para idade, peso e altura.");
       return;
     }
 
-    // Verificar palavra-chave igual ao email e não em branco
-    if (user.palavraChave === "") {
+    if (currentUser.palavraChave === "") {
       alert("A palavra-chave não pode estar em branco.");
       return;
     }
 
-    // Atualizar informações do usuário no localStorage
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    // Atualiza o usuário atual no localStorage
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
-    // Voltar ao modo de exibição padrão
+    // Atualiza a lista de usuários
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const updatedUsers = users.map(u => (u.email === currentUser.email ? currentUser : u));
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+
     setEditMode(false);
   };
 
@@ -66,17 +66,17 @@ function AtualizarUsuario() {
     <div>
       <div className="containerInfo">
         <h2 className="tituloInfo">Suas informações:</h2>
-        <label>Email: {editMode ? <input className="inputInfo" type="text" value={user.email} onChange={e => setUser({...user, email: e.target.value})} /> : user.email}</label><br />
-        <label>Senha: {editMode ? <input className="inputInfo" type="password" value={user.password} onChange={e => setUser({...user, password: e.target.value})} /> : "******"}</label><br />
-        <label>Nome: {editMode ? <input className="inputInfo" type="text" value={user.nome} onChange={e => setUser({...user, nome: e.target.value})} /> : user.nome}</label><br />
-        <label>Idade: {editMode ? <input className="inputInfo" type="text" value={user.idade} onChange={e => setUser({...user, idade: e.target.value})} /> : user.idade}</label><br />
-        <label>Peso: {editMode ? <input className="inputInfo" type="text" value={user.peso} onChange={e => setUser({...user, peso: e.target.value})} /> : user.peso}</label><br />
-        <label>Palavra-Chave: {editMode ? <input className="inputInfo" type="text" value={user.palavraChave} onChange={e => setUser({...user, palavraChave: e.target.value})} /> : user.palavraChave}</label><br />
-        <label>Altura: {editMode ? <input className="inputInfo" type="text" value={user.altura} onChange={e => setUser({...user, altura: e.target.value})} /> : user.altura}</label><br />
-        <label>Sexo: {editMode ? <input className="inputInfo" type="text" value={user.sexo} onChange={e => setUser({...user, sexo: e.target.value})} /> : user.sexo}</label><br />
-        <label>Objetivo: {editMode ? <input className="inputInfo" type="text" value={user.objetivo} onChange={e => setUser({...user, objetivo: e.target.value})} /> : user.objetivo}</label><br />
-        <label>Nível de Condicionamento: {editMode ? <input className="inputInfo" type="text" value={user.nivelCondicionamento} onChange={e => setUser({...user, nivelCondicionamento: e.target.value})} /> : user.nivelCondicionamento}</label><br />
-        <label>Frequência de Treino: {editMode ? <input className="inputInfo" type="text" value={user.frequenciaTreino} onChange={e => setUser({...user, frequenciaTreino: e.target.value})} /> : user.frequenciaTreino}</label><br />
+        <label>Email: {editMode ? <input className="inputInfo" type="text" value={currentUser.email} onChange={e => setCurrentUser({...currentUser, email: e.target.value})} /> : currentUser.email}</label><br />
+        <label>Senha: {editMode ? <input className="inputInfo" type="password" value={currentUser.password} onChange={e => setCurrentUser({...currentUser, password: e.target.value})} /> : "******"}</label><br />
+        <label>Nome: {editMode ? <input className="inputInfo" type="text" value={currentUser.nome} onChange={e => setCurrentUser({...currentUser, nome: e.target.value})} /> : currentUser.nome}</label><br />
+        <label>Idade: {editMode ? <input className="inputInfo" type="text" value={currentUser.idade} onChange={e => setCurrentUser({...currentUser, idade: e.target.value})} /> : currentUser.idade}</label><br />
+        <label>Peso: {editMode ? <input className="inputInfo" type="text" value={currentUser.peso} onChange={e => setCurrentUser({...currentUser, peso: e.target.value})} /> : currentUser.peso}</label><br />
+        <label>Palavra-Chave: {editMode ? <input className="inputInfo" type="text" value={currentUser.palavraChave} onChange={e => setCurrentUser({...currentUser, palavraChave: e.target.value})} /> : currentUser.palavraChave}</label><br />
+        <label>Altura: {editMode ? <input className="inputInfo" type="text" value={currentUser.altura} onChange={e => setCurrentUser({...currentUser, altura: e.target.value})} /> : currentUser.altura}</label><br />
+        <label>Sexo: {editMode ? <input className="inputInfo" type="text" value={currentUser.sexo} onChange={e => setCurrentUser({...currentUser, sexo: e.target.value})} /> : currentUser.sexo}</label><br />
+        <label>Objetivo: {editMode ? <input className="inputInfo" type="text" value={currentUser.objetivo} onChange={e => setCurrentUser({...currentUser, objetivo: e.target.value})} /> : currentUser.objetivo}</label><br />
+        <label>Nível de Condicionamento: {editMode ? <input className="inputInfo" type="text" value={currentUser.nivelCondicionamento} onChange={e => setCurrentUser({...currentUser, nivelCondicionamento: e.target.value})} /> : currentUser.nivelCondicionamento}</label><br />
+        <label>Frequência de Treino: {editMode ? <input className="inputInfo" type="text" value={currentUser.frequenciaTreino} onChange={e => setCurrentUser({...currentUser, frequenciaTreino: e.target.value})} /> : currentUser.frequenciaTreino}</label><br />
 
         <div className="botaoPosicaoInfo">
           {editMode ? (
