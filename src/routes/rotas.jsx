@@ -9,10 +9,10 @@ import ExerciseList from '../components/exercicios/exercicios';
 import UserExerciseList from '../components/exercicios/usuarioexercicios';
 import AtualizarUsuarios from '../components/Header';
 
-const Rotas = ({ users , registerUser, addExerciseToUser }) => (
+const Rotas = ({ users , registerUser, addExerciseToUser, updateCurrentUser, setUsers }) => (
   <Routes>
     <Route path="/" element={<LoginPage users={users} />} />
-    <Route path="/registro" element={<RegisterPage users={users} registerUser={registerUser} />} />
+    <Route path="/registro" element={<RegisterPage users={users} registerUser={registerUser} setUsers={setUsers} updateCurrentUser={updateCurrentUser} />} />
     <Route path='/Home' element={<BemVindo/>}/>
     <Route path="/trocar-senha" element={<TrocarSenha users={users} />} />
     <Route path="/informacoes" element={<AtualizarUsuario />} />

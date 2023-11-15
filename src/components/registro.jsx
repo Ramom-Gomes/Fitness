@@ -4,8 +4,9 @@ import validator from "validator";
 import '../estilizações/registro.css'; 
 import { BsArrowLeft } from 'react-icons/bs';
 
-function RegisterPage({ registerUser, users }) {
+function RegisterPage({ registerUser, users, updateCurrentUser, setUsers }) {
   const navigate = useNavigate();
+  console.log('updateCurrentUser:', updateCurrentUser);
 
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -29,6 +30,7 @@ function RegisterPage({ registerUser, users }) {
 
   const handleNextStep = async () => {
     const newErrors = {};
+    console.log('updateCurrentUser:', updateCurrentUser);
 
     // Valida os campos da etapa atual antes de avançar
     if (currentStep === 1) {
@@ -86,8 +88,12 @@ function RegisterPage({ registerUser, users }) {
       if (currentStep < 3) {
         setCurrentStep(currentStep + 1);
       } else {
-        registerUser(newUser);
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        localStorage.setItem("currentUser", JSON.stringify(newUser));
+        updateCurrentUser(newUser);
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const updatedUsers = [...users, newUser];
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
         setNewUser({
           email: "",
           password: "",

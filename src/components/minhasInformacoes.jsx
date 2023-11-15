@@ -21,12 +21,17 @@ function AtualizarUsuario() {
 
   const [editMode, setEditMode] = useState(false);
 
-  useEffect(() => {
+  // Função para obter o usuário atualizado do localStorage
+  const getCurrentUser = () => {
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));
     if (storedUser) {
       setCurrentUser(storedUser);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []); // Chama a função uma vez quando o componente é montado
 
   const handleUpdate = () => {
     if (currentUser.email === "" || currentUser.password === "" || currentUser.nome === "") {
@@ -51,14 +56,16 @@ function AtualizarUsuario() {
       return;
     }
 
-    // Atualiza o usuário atual no localStorage
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-    // Atualiza a lista de usuários
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const updatedUsers = users.map(u => (u.email === currentUser.email ? currentUser : u));
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map((u) =>
+      u.email === currentUser.email ? currentUser : u
+    );
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  
+    // Chama getCurrentUser para garantir que currentUser seja o mais atualizado
+    getCurrentUser();
+  
     setEditMode(false);
   };
 

@@ -2,13 +2,13 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Rotas from './routes/rotas';
-import Header from './components/Header';
 import Menu from './components/Menu';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,7 +26,19 @@ function App() {
   }, [users]);
 
   const registerUser = (newUser) => {
-    setUsers((prevUsers) => [...prevUsers, newUser]);
+    setUsers((prevUsers) => {
+      const updatedUsers = [...prevUsers, newUser];
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
+      return updatedUsers;
+    });
+  };
+
+  const updateCurrentUser = (user) => {
+    // Atualize o usuário atual no estado
+    setCurrentUser(user);
+
+    // Atualize o localStorage com o novo usuário
+    localStorage.setItem('currentUser', JSON.stringify(user));
   };
 
   const addExerciseToUser = (exercise) => {
@@ -59,6 +71,8 @@ function App() {
             users={users}
             registerUser={registerUser}
             addExerciseToUser={addExerciseToUser}
+            updateCurrentUser={updateCurrentUser}
+            setUsers={setUsers}
           />
         </div>
       </div>
