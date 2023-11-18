@@ -20,7 +20,7 @@ function Menu() {
       </nav>
       <nav className={menuAberto ? "nav-list-active" : "nav-list"}>
         <Link className='links' to="/Home">Home</Link>
-        <Link className='links' to="/teste">Teste</Link>
+        <Link className='links' to="/atualizarInformacoes">Teste</Link>
         <Link className='links' to="/exercise-list">Exercícios</Link>
         <Link className='links' to="meus-planos">Meus planos</Link>
         <Link className='link-user' to="/informacoes"><BiUserCircle size={30}/></Link>
