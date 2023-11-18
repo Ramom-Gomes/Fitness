@@ -10,7 +10,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem('users'));
@@ -27,11 +26,6 @@ function App() {
     console.log(users);
   }, [users]);
 
-  const forceReloadAndRedirect = (path) => {
-    navigate(path, { replace: true });
-    window.location.reload(true); // Recarrega a página
-  };
-
   const registerUser = (newUser) => {
     setUsers((prevUsers) => {
       const updatedUsers = [...prevUsers, newUser];
@@ -46,7 +40,6 @@ function App() {
 
     // Atualize o localStorage com o novo usuário
     localStorage.setItem('currentUser', JSON.stringify(user));
-    forceReloadAndRedirect('/Home');
   };
 
   const addExerciseToUser = (exercise) => {
