@@ -5,6 +5,7 @@ import '../estilizações/trocarSenha.css';
 import { BsArrowLeft } from 'react-icons/bs';
 
 function TrocarSenha({ users }) {
+  console.log('Usuários dentro do componente TrocarSenha:', users);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');

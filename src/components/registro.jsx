@@ -6,7 +6,6 @@ import { BsArrowLeft } from 'react-icons/bs';
 
 function RegisterPage({ registerUser, users, updateCurrentUser, setUsers }) {
   const navigate = useNavigate();
-  console.log('updateCurrentUser:', updateCurrentUser);
 
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -30,7 +29,6 @@ function RegisterPage({ registerUser, users, updateCurrentUser, setUsers }) {
 
   const handleNextStep = async () => {
     const newErrors = {};
-    console.log('updateCurrentUser:', updateCurrentUser);
 
     // Valida os campos da etapa atual antes de avançar
     if (currentStep === 1) {

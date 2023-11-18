@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Rotas from './routes/rotas';
 import Menu from './components/Menu';
 import { Provider } from 'react-redux';
@@ -10,6 +10,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem('users'));
@@ -23,7 +24,13 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(users));
+    console.log(users);
   }, [users]);
+
+  const forceReloadAndRedirect = (path) => {
+    navigate(path, { replace: true });
+    window.location.reload(true); // Recarrega a página
+  };
 
   const registerUser = (newUser) => {
     setUsers((prevUsers) => {
@@ -39,6 +46,7 @@ function App() {
 
     // Atualize o localStorage com o novo usuário
     localStorage.setItem('currentUser', JSON.stringify(user));
+    forceReloadAndRedirect('/Home');
   };
 
   const addExerciseToUser = (exercise) => {
