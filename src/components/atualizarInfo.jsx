@@ -20,6 +20,7 @@ function AtualizarInfo() {
   });
 
   const [editMode, setEditMode] = useState(false);
+  const [viewingUpdates, setViewingUpdates] = useState(false);
 
   // Função para obter o usuário atualizado do localStorage
   const getCurrentUser = () => {
@@ -92,34 +93,76 @@ function AtualizarInfo() {
     setEditMode(false);
   };
 
+  const getCurrentUserUpdates = () => {
+    const userEmail = currentUser.email;
+    const updatesObject = JSON.parse(localStorage.getItem("atualizacoes")) || {};
+    return updatesObject[userEmail] || [];
+  };
+
   return (
     <div>
-      <div className="containerInfo">
-        <h2 className="tituloInfo">Suas informações:</h2>
-        <label>Email: {editMode ? <input className="inputInfo" type="text" value={currentUser.email} onChange={e => setCurrentUser({...currentUser, email: e.target.value})} /> : currentUser.email}</label><br />
-        <label>Senha: {editMode ? <input className="inputInfo" type="password" value={currentUser.password} onChange={e => setCurrentUser({...currentUser, password: e.target.value})} /> : "******"}</label><br />
-        <label>Nome: {editMode ? <input className="inputInfo" type="text" value={currentUser.nome} onChange={e => setCurrentUser({...currentUser, nome: e.target.value})} /> : currentUser.nome}</label><br />
-        <label>Idade: {editMode ? <input className="inputInfo" type="text" value={currentUser.idade} onChange={e => setCurrentUser({...currentUser, idade: e.target.value})} /> : currentUser.idade}</label><br />
-        <label>Peso: {editMode ? <input className="inputInfo" type="text" value={currentUser.peso} onChange={e => setCurrentUser({...currentUser, peso: e.target.value})} /> : currentUser.peso}</label><br />
-        <label>Palavra-Chave: {editMode ? <input className="inputInfo" type="text" value={currentUser.palavraChave} onChange={e => setCurrentUser({...currentUser, palavraChave: e.target.value})} /> : currentUser.palavraChave}</label><br />
-        <label>Altura: {editMode ? <input className="inputInfo" type="text" value={currentUser.altura} onChange={e => setCurrentUser({...currentUser, altura: e.target.value})} /> : currentUser.altura}</label><br />
-        <label>Sexo: {editMode ? <input className="inputInfo" type="text" value={currentUser.sexo} onChange={e => setCurrentUser({...currentUser, sexo: e.target.value})} /> : currentUser.sexo}</label><br />
-        <label>Objetivo: {editMode ? <input className="inputInfo" type="text" value={currentUser.objetivo} onChange={e => setCurrentUser({...currentUser, objetivo: e.target.value})} /> : currentUser.objetivo}</label><br />
-        <label>Nível de Condicionamento: {editMode ? <input className="inputInfo" type="text" value={currentUser.nivelCondicionamento} onChange={e => setCurrentUser({...currentUser, nivelCondicionamento: e.target.value})} /> : currentUser.nivelCondicionamento}</label><br />
-        <label>Frequência de Treino: {editMode ? <input className="inputInfo" type="text" value={currentUser.frequenciaTreino} onChange={e => setCurrentUser({...currentUser, frequenciaTreino: e.target.value})} /> : currentUser.frequenciaTreino}</label><br />
-
-        <div className="botaoPosicaoInfo">
-          {editMode ? (
-            <div>
-              <button className="botaoInfo Atualizar " onClick={handleUpdate}>Atualizar</button>
-              <button className="botaoInfo" onClick={() => setEditMode(false)}>Cancelar</button>
-            </div>
+      {viewingUpdates ? (
+        <div>
+          <h2 className="tituloInfo">Suas Atualizações:</h2>
+          {getCurrentUserUpdates().length === 0 ? (
+            <p>Você não tem atualizações. Atualize suas informações para visualizar as atualizações.</p>
           ) : (
-            <button className="botaoInfo" onClick={() => setEditMode(true)}>Editar</button>
+            <ul>
+              {getCurrentUserUpdates().map((update, index) => (
+                <li key={index}>
+                  <p>Data: {update.date}</p>
+                  <p>Hora: {update.time}</p>
+                  <p>Informações Antigas: {JSON.stringify(update.oldInfo)}</p>
+                  <p>Informações Novas: {JSON.stringify(update.newInfo)}</p>
+                </li>
+              ))}
+            </ul>
           )}
+          <button className="botaoInfoVoltar" onClick={() => setViewingUpdates(false)}>
+            Voltar para Atualizar Informações
+          </button>
         </div>
-          <button className="botaoInfoVoltar" onClick={() => navigate(-1)}>Voltar</button>
-      </div>
+      ) : (
+        <div className="containerInfo">
+          <h2 className="tituloInfo">Suas informações:</h2>
+            <label>Nome: {editMode ? <input className="inputInfo" type="text" value={currentUser.nome} onChange={e => setCurrentUser({...currentUser, nome: e.target.value})} /> : currentUser.nome}</label><br />
+            <label>Idade: {editMode ? <input className="inputInfo" type="text" value={currentUser.idade} onChange={e => setCurrentUser({...currentUser, idade: e.target.value})} /> : currentUser.idade}</label><br />
+            <label>Peso: {editMode ? <input className="inputInfo" type="text" value={currentUser.peso} onChange={e => setCurrentUser({...currentUser, peso: e.target.value})} /> : currentUser.peso}</label><br />
+            <label>Palavra-Chave: {editMode ? <input className="inputInfo" type="text" value={currentUser.palavraChave} onChange={e => setCurrentUser({...currentUser, palavraChave: e.target.value})} /> : currentUser.palavraChave}</label><br />
+            <label>Altura: {editMode ? <input className="inputInfo" type="text" value={currentUser.altura} onChange={e => setCurrentUser({...currentUser, altura: e.target.value})} /> : currentUser.altura}</label><br />
+            <label>Sexo: {editMode ? <input className="inputInfo" type="text" value={currentUser.sexo} onChange={e => setCurrentUser({...currentUser, sexo: e.target.value})} /> : currentUser.sexo}</label><br />
+            <label>Objetivo: {editMode ? <input className="inputInfo" type="text" value={currentUser.objetivo} onChange={e => setCurrentUser({...currentUser, objetivo: e.target.value})} /> : currentUser.objetivo}</label><br />
+            <label>Nível de Condicionamento: {editMode ? <input className="inputInfo" type="text" value={currentUser.nivelCondicionamento} onChange={e => setCurrentUser({...currentUser, nivelCondicionamento: e.target.value})} /> : currentUser.nivelCondicionamento}</label><br />
+            <label>Frequência de Treino: {editMode ? <input className="inputInfo" type="text" value={currentUser.frequenciaTreino} onChange={e => setCurrentUser({...currentUser, frequenciaTreino: e.target.value})} /> : currentUser.frequenciaTreino}</label><br />
+          <div className="botaoPosicaoInfo">
+            {editMode ? (
+              <div>
+                <button className="botaoInfo Atualizar " onClick={handleUpdate}>
+                  Atualizar
+                </button>
+                <button className="botaoInfo" onClick={() => setEditMode(false)}>
+                  Cancelar
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button className="botaoInfo" onClick={() => setEditMode(true)}>
+                  Editar
+                </button>
+                <button className="botaoInfoVoltar" onClick={() => navigate(-1)}>
+                  Voltar
+                </button>
+                <button className="botaoInfo" onClick={() => setViewingUpdates(true)}>
+                  Visualizar Minhas Atualizações
+                </button>
+              </div>
+            )}
+          </div>
+          <button className="botaoInfoVoltar" onClick={() => navigate(-1)}>
+            Voltar
+          </button>
+        </div>
+      )}
     </div>
   );
 }
