@@ -68,14 +68,20 @@ function AtualizarInfo() {
       newInfo: currentUser,
     };
   
+    const userEmail = currentUser.email;
+
     // Obtém o array de atualizações do localStorage ou cria um novo array vazio
-    const updatesArray = JSON.parse(localStorage.getItem("atualizacoes")) || [];
+    const updatesObject = JSON.parse(localStorage.getItem("atualizacoes")) || {};
   
+    const userUpdatesArray = updatesObject[userEmail] || [];
+
     // Adiciona a nova atualização ao array
-    updatesArray.push(updateInfo);
+    userUpdatesArray.push(updateInfo);
+
+    updatesObject[userEmail] = userUpdatesArray;
   
     // Salva o array atualizado no localStorage
-    localStorage.setItem("atualizacoes", JSON.stringify(updatesArray));
+    localStorage.setItem("atualizacoes", JSON.stringify(updatesObject));
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
