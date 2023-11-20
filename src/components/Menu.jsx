@@ -24,6 +24,7 @@ function Menu() {
         <Link className='links' to="/exercise-list">Exercícios</Link>
         <Link className='links' to="meus-planos">Meus planos</Link>
         <Link className='link-user' to="/informacoes"><BiUserCircle size={30}/></Link>
+        <Link className='linksSair' to="/">Sair</Link>
       </nav>
     </div>
   );

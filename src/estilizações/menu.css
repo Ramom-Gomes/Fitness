@@ -15,7 +15,7 @@
   color: #000; 
 }
 
-.menuTitulo:hover, .links:hover, .link-user:hover {
+.menuTitulo:hover, .links:hover, .link-user:hover, .linksSair:hover {
   color: #FFF;
 }
 
@@ -27,7 +27,7 @@
   margin: auto;
   margin-left: 32px;
   color: #000;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-decoration: none;
 }
 
@@ -42,6 +42,10 @@
 }
 
 .menu-responsivo {
+  display: none;
+}
+
+.linksSair {
   display: none;
 }
 
@@ -72,6 +76,15 @@
   .link-user, .links {
     margin-left: 0px;
     margin: auto;
+  }
+
+  .linksSair {
+    display: block;
+    margin-bottom: 30px;
+    margin: auto;
+    color: #000;
+    letter-spacing: 2px;
+    text-decoration: none;
   }
 
   .menu-responsivo {
