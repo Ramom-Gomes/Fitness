@@ -16,7 +16,7 @@ function AtualizarUsuario() {
   const handleLogout = () => {
     // Redirecionar para a página de login
     navigate('/');
-    
+    window.location.reload();
   };
 
   useEffect(() => {
