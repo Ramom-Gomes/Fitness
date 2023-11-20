@@ -13,6 +13,12 @@ function AtualizarUsuario() {
     updateCount: 0,
   });
 
+  const handleLogout = () => {
+    // Redirecionar para a página de login
+    navigate('/');
+    
+  };
+
   useEffect(() => {
     // Obtenha as informações do usuário do localStorage ou da API, se aplicável
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
@@ -60,7 +66,7 @@ function AtualizarUsuario() {
         <button className="botaoInfoOfici" onClick={() => navigate(-1)}>
           Voltar
         </button>
-        <button className="botaoInfoOfici" onClick={() => navigate("/")}>
+        <button className="botaoInfoOfici" onClick={handleLogout}>
           Sair
         </button>
         <p className="infoSemAtualizacoes">Para atualizar suas informações clique <Link className="linksHome" to="/atualizarInformacoes">aqui</Link></p>

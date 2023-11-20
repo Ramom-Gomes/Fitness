@@ -24,7 +24,7 @@ function BemVindo() {
   const handleLogout = () => {
     // Redirecionar para a página de login
     navigate('/');
-    
+    window.location.reload();
   };
 
   return (
