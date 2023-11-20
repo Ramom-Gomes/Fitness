@@ -102,25 +102,39 @@ function AtualizarInfo() {
   return (
     <div>
       {viewingUpdates ? (
-        <div>
+        <div className="containerInfo">
           <h2 className="tituloInfo">Suas Atualizações:</h2>
+          <button className="botaoInfoVoltarAtualizar" onClick={() => setViewingUpdates(false)}>
+            Voltar para Atualizar Informações
+          </button>
           {getCurrentUserUpdates().length === 0 ? (
-            <p>Você não tem atualizações. Atualize suas informações para visualizar as atualizações.</p>
+            <p className="infoSemAtualizacoes">Você não tem atualizações. Atualize suas informações para visualizar as atualizações.</p>
           ) : (
-            <ul>
+            <ul className="atualizacoesInfo">
               {getCurrentUserUpdates().map((update, index) => (
-                <li key={index}>
+                <li className="infoAtualizacoes" key={index}>
                   <p>Data: {update.date}</p>
                   <p>Hora: {update.time}</p>
-                  <p>Informações Antigas: {JSON.stringify(update.oldInfo)}</p>
-                  <p>Informações Novas: {JSON.stringify(update.newInfo)}</p>
+                  <h3 className="fasesInfo">Informações Antigas:</h3>
+                  <ul>
+                    {Object.keys(update.oldInfo).map((key, i) => (
+                      <li key={i}>
+                        <strong>{key}:</strong> {update.oldInfo[key]}
+                      </li>
+                    ))}
+                  </ul>
+                  <h3 className="fasesInfo">Informações Novas:</h3>
+                  <ul>
+                    {Object.keys(update.newInfo).map((key, i) => (
+                      <li key={i}>
+                        <strong>{key}:</strong> {update.newInfo[key]}
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
           )}
-          <button className="botaoInfoVoltar" onClick={() => setViewingUpdates(false)}>
-            Voltar para Atualizar Informações
-          </button>
         </div>
       ) : (
         <div className="containerInfo">
@@ -149,10 +163,7 @@ function AtualizarInfo() {
                 <button className="botaoInfo" onClick={() => setEditMode(true)}>
                   Editar
                 </button>
-                <button className="botaoInfoVoltar" onClick={() => navigate(-1)}>
-                  Voltar
-                </button>
-                <button className="botaoInfo" onClick={() => setViewingUpdates(true)}>
+                <button className="botaoInfoVisu" onClick={() => setViewingUpdates(true)}>
                   Visualizar Minhas Atualizações
                 </button>
               </div>
