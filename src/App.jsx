@@ -23,7 +23,6 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(users));
-    console.log(users);
   }, [users]);
 
   const registerUser = (newUser) => {
