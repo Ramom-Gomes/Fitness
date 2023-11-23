@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Rotas from './routes/rotas';
 import Menu from './components/Menu';
-import { Provider } from 'react-redux';
-import store from './Redux/store';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -34,24 +32,24 @@ function App() {
   };
 
   const updateCurrentUser = (user) => {
-    // Atualize o usuário atual no estado
+    // Atualiza o usuário atual no estado
     setCurrentUser(user);
 
-    // Atualize o localStorage com o novo usuário
+    // Atualiza o localStorage com o novo usuário
     localStorage.setItem('currentUser', JSON.stringify(user));
   };
 
   const addExerciseToUser = (exercise) => {
-    // Clone o objeto de usuário atual
+    // Clona o objeto de usuário atual
     const updatedUser = { ...currentUser };
 
-    // Adicione o exercício à lista de exercícios do usuário
+    // Adiciona o exercício à lista de exercícios do usuário
     updatedUser.exercises.push(exercise);
 
-    // Atualize o usuário no estado
+    // Atualiza o usuário no estado
     setCurrentUser(updatedUser);
 
-    // Atualize o localStorage com o novo usuário
+    // Atualiza o localStorage com o novo usuário
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
   };
 
@@ -61,7 +59,6 @@ function App() {
     location.pathname === '/trocar-senha';
 
   return (
-    <Provider store={store}>
       <div className="container-app">
         <header>
           {!hideHeaderAndMenu && <Menu className="menu" />}
@@ -76,7 +73,6 @@ function App() {
           />
         </div>
       </div>
-    </Provider>
   );
 }
 

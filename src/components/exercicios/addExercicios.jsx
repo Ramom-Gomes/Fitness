@@ -9,7 +9,7 @@ function AddExerciseScreen({ exercise, onClose }) {
   const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
   const userEmail = currentUser.email;
 
-  // Recupere os planos do usuário atual com base em seu e-mail
+  // Recupera os planos do usuário atual com base em seu e-mail
   const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
   const userPlansForEmail = userPlans[userEmail] || {};
 
@@ -27,7 +27,7 @@ function AddExerciseScreen({ exercise, onClose }) {
 
     userPlansForEmail[newPlanName] = newPlan;
 
-    // Atualize os planos do usuário atual com base em seu e-mail
+    // Atualiza os planos do usuário atual com base em seu e-mail
     userPlans[userEmail] = userPlansForEmail;
 
     localStorage.setItem('planos', JSON.stringify(userPlans));

@@ -14,14 +14,14 @@ function Menu() {
   }
 
   const handleLogout = () => {
-    // Redirecionar para a página de login
+    // Redireciona para a página de login
     Navigate('/');
     window.location.reload();
   };
 
   return (
     <div className="container-menu">
-      <h1 className='menuTitulo'>MyFitness</h1>
+      <h1 className='menuTitulo'>Fitness</h1>
       <nav className='menu-responsivo'>
         <TfiMenu className='menu-logo' onClick={trocaMenu}/>
       </nav>

@@ -39,23 +39,23 @@ function TrocarSenha({ users }) {
       } else if (newPassword !== confirmPassword) {
         newErrors.confirmPassword = 'As senhas não coincidem.';
       } else {
-        // Atualizar a senha do usuário
+        // Atualiza a senha do usuário
         users[userIndex].password = newPassword;
 
-        // Atualizar os dados no armazenamento local
+        // Atualiza os dados no armazenamento local
         localStorage.setItem('users', JSON.stringify(users));
 
-        // Limpar campos e erros
+        // Limpa campos e erros
         setEmail('');
         setNewPassword('');
         setConfirmPassword('');
         setKeyword('');
         setErrors({});
 
-        // Fazer login do usuário automaticamente
+        // Faz login do usuário automaticamente
         localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
 
-        // Redirecionar para a página de boas-vindas
+        // Redireciona para a página de boas-vindas
         navigate('/Home');
       }
     }

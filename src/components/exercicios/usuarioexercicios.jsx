@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 function UserExerciseList() {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -8,7 +7,7 @@ function UserExerciseList() {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   useEffect(() => {
-    // Atualize o estado de userPlansForEmail quando o componente montar e sempre que o usuário mudar.
+    // Atualiza o estado de userPlansForEmail quando o componente montar e sempre que o usuário mudar.
     const userEmail = currentUser.email;
     const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
     setUserPlansForEmail(userPlans[userEmail] || {});
@@ -26,7 +25,7 @@ function UserExerciseList() {
     const updatedPlans = { ...userPlansForEmail };
     delete updatedPlans[planName];
 
-    // Atualize o estado e o armazenamento local após a exclusão
+    // Atualiza o estado e o armazenamento local após a exclusão
     const userEmail = currentUser.email;
     const userPlans = JSON.parse(localStorage.getItem('planos')) || {};
     userPlans[userEmail] = updatedPlans;

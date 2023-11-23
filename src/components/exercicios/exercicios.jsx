@@ -39,12 +39,12 @@ function BodyPartList() {
   };
 
   const loadExercisesByBodyPart = async (bodyPart, page) => {
-    // Calcule o índice de início com base na página atual
+    // Calcula o índice de início com base na página atual
     const startIndex = (page - 1) * exercisesPerPage;
-    // Calcule o índice de fim com base na página atual
+    // Calcula o índice de fim com base na página atual
     const endIndex = startIndex + exercisesPerPage;
 
-    // Limpe o cache ao trocar de grupo muscular e redefina a página para 1
+    // Limpa o cache ao trocar de grupo muscular e redefina a página para 1
     if (selectedBodyPart !== bodyPart) {
       setCache((prevCache) => ({
         ...prevCache,
@@ -53,7 +53,7 @@ function BodyPartList() {
       setCurrentPage(1);
     }
 
-    // Verifique se os dados para a parte do corpo já estão em cache
+    // Verifica se os dados para a parte do corpo já estão em cache
     if (cache[bodyPart]) {
       setExerciseData((prevData) => ({
         ...prevData,
@@ -75,18 +75,18 @@ function BodyPartList() {
       const response = await fetch(url, options);
       if (response.ok) {
         const result = await response.json();
-        // Armazene os dados em cache
+        // Armazena os dados em cache
         setCache((prevCache) => ({
           ...prevCache,
           [bodyPart]: result,
         }));
-        // Atualize o estado com os exercícios da página atual
+        // Atualiza o estado com os exercícios da página atual
         setExerciseData((prevData) => ({
           ...prevData,
           [bodyPart]: result.slice(startIndex, endIndex), // Retorna apenas os exercícios da página atual
         }));
 
-        // Atualize o localStorage com os dados em cache
+        // Atualiza o localStorage com os dados em cache
         localStorage.setItem('exerciseCache', JSON.stringify(cache));
       } else {
         console.error(`Erro na resposta da API para ${bodyPart}:`, response.status);

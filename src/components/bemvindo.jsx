@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
 import '../estilizações/bemvindo.css';
 
 function BemVindo() {
   const navigate = useNavigate();
-  const menuOpen = useSelector((state) => state.menu.menuOpen);
 
   const [userData, setUserData] = useState({
     nome: "",
@@ -22,13 +20,13 @@ function BemVindo() {
   }, []);
 
   const handleLogout = () => {
-    // Redirecionar para a página de login
+    // Redireciona para a página de login
     navigate('/');
     window.location.reload();
   };
 
   return (
-    <div className={`content ${menuOpen ? 'content-shifted' : ''}`}>
+    <div>
       <div className="containerHome">
         <h2 className="tituloHome">Olá, {userData.nome}!</h2>
         <span className="spanHome">

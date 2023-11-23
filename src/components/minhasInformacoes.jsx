@@ -14,32 +14,32 @@ function AtualizarUsuario() {
   });
 
   const handleLogout = () => {
-    // Redirecionar para a página de login
+    // Redireciona para a página de login
     navigate('/');
     window.location.reload();
   };
 
   useEffect(() => {
-    // Obtenha as informações do usuário do localStorage ou da API, se aplicável
+    // Obtem as informações do usuário do localStorage ou da API, se aplicável
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
     setCurrentUser(currentUser);
     
-    // Obtenha a contagem de planos do usuário
+    // Obtem a contagem de planos do usuário
     const userPlans = JSON.parse(localStorage.getItem("planos")) || {};
     const planCount = Object.keys(userPlans[currentUser.email] || {}).length;
 
-    // Obtenha a contagem total de exercícios nos planos do usuário
+    // Obtem a contagem total de exercícios nos planos do usuário
     const exerciseCount = Object.values(userPlans[currentUser.email] || {}).reduce(
       (total, plan) => total + (plan.exercises ? plan.exercises.length : 0),
       0
     );
 
-    // Obtenha a contagem de atualizações do usuário
+    // Obtem a contagem de atualizações do usuário
     const userEmail = currentUser.email;
     const updatesObject = JSON.parse(localStorage.getItem("atualizacoes")) || {};
     const updateCount = (updatesObject[userEmail] || []).length;
 
-    // Atualize o estado com as estatísticas do usuário
+    // Atualiza o estado com as estatísticas do usuário
     setUserStats({
       planCount,
       exerciseCount,

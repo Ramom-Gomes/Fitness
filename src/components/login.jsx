@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../estilizações/login.css';
 import Musculação from '../images/Musculação.png';
-import { connect } from 'react-redux';  // Adicionei o import para connect
 
-function LoginPage({ theme }) {  // Adicionei theme como propriedade
+function LoginPage() {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState("");
@@ -66,8 +65,4 @@ function LoginPage({ theme }) {  // Adicionei theme como propriedade
   );
 }
 
-const mapStateToProps = (state) => ({
-  theme: state.theme,
-});
-
-export default connect(mapStateToProps)(LoginPage);
+export default LoginPage;
