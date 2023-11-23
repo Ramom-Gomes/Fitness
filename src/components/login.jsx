@@ -47,7 +47,7 @@ function LoginPage() {
   
 
   return (
-    <div className={`container${theme === 'light' ? '-light' : ''}`}>
+    <div>
       <main className={`main`}>
         <img src={Musculação} className="imagem" alt="" />
         <input className={`campo-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
